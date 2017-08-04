@@ -1,30 +1,30 @@
 /* eslint-disable import/unambiguous */
 
-const path = require("path");
-const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = () => {
-  const production = process.env.NODE_ENV === "production";
+  const production = process.env.NODE_ENV === 'production'
 
   return {
-    context: path.resolve("."),
+    context: path.resolve('.'),
 
     entry: {
-      app: ["babel-polyfill", "react-hot-loader/patch", "./app.js"],
+      app: ['babel-polyfill', 'react-hot-loader/patch', './app.js'],
     },
 
     output: {
-      path: path.resolve("./dist"),
-      filename: production ? "[name]-[chunkhash].js" : "[name].js",
+      path: path.resolve('./dist'),
+      filename: production ? '[name]-[chunkhash].js' : '[name].js',
     },
 
-    devtool: "source-map",
+    devtool: 'source-map',
 
     resolve: {
       alias: {
-        react: path.resolve("./node_modules/react"),
-        "react-dom": path.resolve("./node_modules/react-dom"),
+        react: path.resolve('./node_modules/react'),
+        'react-dom': path.resolve('./node_modules/react-dom'),
       },
     },
 
@@ -33,7 +33,7 @@ module.exports = () => {
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          loader: "babel-loader",
+          loader: 'babel-loader',
         },
       ],
     },
@@ -44,7 +44,7 @@ module.exports = () => {
       }),
 
       new webpack.EnvironmentPlugin({
-        NODE_ENV: production ? "production" : "development",
+        NODE_ENV: production ? 'production' : 'development',
       }),
 
       production && new webpack.optimize.ModuleConcatenationPlugin(),
@@ -55,7 +55,7 @@ module.exports = () => {
         }),
 
       new HtmlWebpackPlugin({
-        template: "./index.html",
+        template: './index.html',
         minify: production
           ? {
               collapseWhitespace: true,
@@ -64,5 +64,5 @@ module.exports = () => {
         xhtml: true,
       }),
     ].filter(Boolean),
-  };
-};
+  }
+}

@@ -1,20 +1,20 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { AppContainer } from "react-hot-loader";
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { AppContainer } from 'react-hot-loader'
 
-import App from "./src";
+import App from './src'
 
 const render = () => {
   ReactDOM.render(
     <AppContainer>
       <App />
     </AppContainer>,
-    document.querySelector("#app"),
-  );
-};
+    document.querySelector('#app'),
+  )
+}
 
-render();
+render()
 
 if (module.hot) {
-  module.hot.accept("./src", render);
+  module.hot.accept('./src', render)
 }
