@@ -16,6 +16,10 @@
     "plugin:react/recommended"
   ],
   "rules": {
-    "prettier/prettier": ["error", { "trailingComma": "all" }]
+    "prettier/prettier": ["error", {
+      "semi": false,
+      "singleQuote": true,
+      "trailingComma": "all"
+    }]
   }
 }
