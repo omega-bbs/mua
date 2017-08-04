@@ -11,7 +11,13 @@ module.exports = () => {
     context: path.resolve('.'),
 
     entry: {
-      app: ['babel-polyfill', 'react-hot-loader/patch', './app.js'],
+      app: [
+        'babel-polyfill',
+        'whatwg-fetch',
+        'dom4',
+        'react-hot-loader/patch',
+        './app.js',
+      ],
     },
 
     output: {
