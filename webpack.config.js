@@ -62,11 +62,7 @@ module.exports = () => {
 
       new HtmlWebpackPlugin({
         template: './index.html',
-        minify: production
-          ? {
-              collapseWhitespace: true,
-            }
-          : false,
+        minify: production ? { collapseWhitespace: true } : false,
         xhtml: true,
       }),
     ].filter(Boolean),
