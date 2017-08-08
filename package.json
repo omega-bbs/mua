@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --hot",
+    "start": "webpack-dev-server --hot --open",
     "build": "webpack",
     "build:production": "NODE_ENV=production webpack",
     "lint": "eslint .",
