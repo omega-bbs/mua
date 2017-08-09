@@ -64,6 +64,7 @@ module.exports = () => {
     ].filter(Boolean),
 
     devServer: {
+      historyApiFallback: true,
       proxy: {
         '/api': {
           target: 'http://localhost:8000',
