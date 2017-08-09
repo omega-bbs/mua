@@ -2,7 +2,9 @@
 
 const path = require('path')
 const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
+const HtmlPlugin = require('html-webpack-plugin')
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
 module.exports = () => {
   const production = process.env.NODE_ENV === 'production'
@@ -47,6 +49,8 @@ module.exports = () => {
         NODE_ENV: production ? 'production' : 'development',
       }),
 
+      new CaseSensitivePathsPlugin(),
+
       production && new webpack.optimize.ModuleConcatenationPlugin(),
 
       production &&
@@ -54,16 +58,19 @@ module.exports = () => {
           sourceMap: true,
         }),
 
-      new HtmlWebpackPlugin({
+      new HtmlPlugin({
         template: './index.html',
         minify: production
           ? { collapseWhitespace: true, removeScriptTypeAttributes: true }
           : false,
         xhtml: true,
       }),
+
+      new FriendlyErrorsPlugin(),
     ].filter(Boolean),
 
     devServer: {
+      quiet: true,
       historyApiFallback: true,
       proxy: {
         '/api': {
