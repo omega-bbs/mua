@@ -6,20 +6,22 @@ const Container = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+`
 
-  img {
-    width: 160px;
-    height: 160px;
-  }
+const Logo = styled.img`
+  display: block;
+  width: 160px;
+  height: 160px;
 `
 
 class Introduction extends React.Component {
   render() {
     return (
       <Container>
-        <img src="https://omega-bbs.github.io/logo/logo.png" />
+        <Logo src="https://omega-bbs.github.io/logo/logo.png" />
       </Container>
     )
   }
