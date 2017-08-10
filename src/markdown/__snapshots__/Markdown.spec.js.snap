@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`simple 1`] = `
+<div>
+  <p>
+    <em>
+      italic
+    </em>
+     
+    <strong>
+      bold
+    </strong>
+     
+    <code
+      className={undefined}
+      data-sourcepos={undefined}
+    >
+      code
+    </code>
+  </p>
+</div>
+`;
