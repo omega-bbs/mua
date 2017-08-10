@@ -16,7 +16,7 @@ $ npm start
 $ npm run storybook
 ```
 
-## Lint & Format
+## Lint / Format
 
 ``` shell
 $ npm run lint
