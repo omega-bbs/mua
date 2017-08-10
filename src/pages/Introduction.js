@@ -36,7 +36,7 @@ const Contributers = styled.div`
   align-items: center;
   margin-top: 2rem;
 
-  @media (max-width: 640px) {
+  @media (max-width: 960px) {
     display: none;
   }
 `
