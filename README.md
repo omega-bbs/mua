@@ -10,9 +10,21 @@ Front-end for ω bbs.
 $ npm start
 ```
 
+## Storybook
+
+``` shell
+$ npm run storybook
+```
+
 ## Lint & Format
 
 ``` shell
 $ npm run lint
 $ npm run prettier
+```
+
+## Test
+
+``` shell
+$ npm run jest
 ```
