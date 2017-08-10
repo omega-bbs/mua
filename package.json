@@ -6,6 +6,7 @@
     "start": "webpack-dev-server --hot --open",
     "build": "webpack",
     "build:production": "NODE_ENV=production webpack",
+    "storybook": "start-storybook --port 8081",
     "lint": "eslint .",
     "prettier": "eslint --fix .",
     "precommit": "lint-staged"
@@ -33,6 +34,7 @@
     "styled-components": "^2.1.2"
   },
   "devDependencies": {
+    "@storybook/react": "^3.2.3",
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.1.1",
