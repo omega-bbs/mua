@@ -20,3 +20,13 @@ exports[`simple 1`] = `
   </p>
 </div>
 `;
+
+exports[`soft-break 1`] = `
+<div>
+  <p>
+    Hello,
+    <br />
+    world!
+  </p>
+</div>
+`;

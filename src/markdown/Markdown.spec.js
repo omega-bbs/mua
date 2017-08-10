@@ -10,3 +10,7 @@ const renderMarkdown = markdown => {
 test('simple', () => {
   expect(renderMarkdown('*italic* **bold** `code`')).toMatchSnapshot()
 })
+
+test('soft-break', () => {
+  expect(renderMarkdown('Hello,\nworld!')).toMatchSnapshot()
+})

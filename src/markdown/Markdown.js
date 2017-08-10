@@ -1,10 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Parser } from 'commonmark'
-import ReactRenderer from 'commonmark-react-renderer'
 
-const parser = new Parser()
-const renderer = new ReactRenderer()
+import parser from './parser'
+import renderer from './renderer'
 
 class Markdown extends React.Component {
   static propTypes = {
