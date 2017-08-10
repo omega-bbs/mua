@@ -7,7 +7,7 @@
     "build": "webpack",
     "build:production": "NODE_ENV=production webpack",
     "storybook": "start-storybook --port 8081",
-    "test": "npm run jest && npm run lint",
+    "test": "npm run lint && npm run jest",
     "jest": "jest",
     "lint": "eslint .",
     "prettier": "eslint --fix .",
