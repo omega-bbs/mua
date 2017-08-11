@@ -1,9 +1,14 @@
 import ReactRenderer from 'commonmark-react-renderer'
 
+import Media from './components/Media'
+
 const createRenderer = () => {
   return new ReactRenderer({
     skipHtml: true,
     softBreak: 'br',
+    renderers: {
+      image: Media,
+    },
   })
 }
 

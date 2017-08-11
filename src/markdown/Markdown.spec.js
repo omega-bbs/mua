@@ -3,6 +3,8 @@ import renderer from 'react-test-renderer'
 
 import Markdown from './Markdown'
 
+jest.mock('./components/Media/Media', () => 'mock-media')
+
 const renderMarkdown = markdown => {
   return renderer.create(<Markdown markdown={markdown} />).toJSON()
 }
@@ -27,4 +29,8 @@ test('safe (mixed)', () => {
 
 test('soft break', () => {
   expect(renderMarkdown('Hello,\nworld!')).toMatchSnapshot()
+})
+
+test('media', () => {
+  expect(renderMarkdown('![]()')).toMatchSnapshot()
 })

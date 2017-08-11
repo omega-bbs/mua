@@ -1,5 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`media 1`] = `
+<div>
+  <p>
+    <mock-media
+      alt=""
+      src=""
+      title={undefined}
+    />
+  </p>
+</div>
+`;
+
 exports[`safe (mixed) 1`] = `
 <div>
   <p>
