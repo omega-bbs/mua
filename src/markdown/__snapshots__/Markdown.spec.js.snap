@@ -1,5 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`safe (mixed) 1`] = `
+<div>
+  <p>
+    testtest
+  </p>
+</div>
+`;
+
+exports[`safe (mixed) 2`] = `
+<div>
+  <p>
+    testtesttest
+  </p>
+</div>
+`;
+
+exports[`safe (mixed) 3`] = `
+<div>
+  <p>
+    testtesttest
+  </p>
+</div>
+`;
+
+exports[`safe (mixed) 4`] = `
+<div>
+  <p>
+    testtesttest
+  </p>
+</div>
+`;
+
+exports[`safe 1`] = `<div />`;
+
+exports[`safe 2`] = `<div />`;
+
+exports[`safe 3`] = `
+<div>
+  <p>
+    test
+  </p>
+</div>
+`;
+
+exports[`safe 4`] = `
+<div>
+  <p>
+    test
+  </p>
+</div>
+`;
+
 exports[`simple 1`] = `
 <div>
   <p>
@@ -21,7 +73,7 @@ exports[`simple 1`] = `
 </div>
 `;
 
-exports[`soft-break 1`] = `
+exports[`soft break 1`] = `
 <div>
   <p>
     Hello,

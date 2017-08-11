@@ -2,6 +2,7 @@ import ReactRenderer from 'commonmark-react-renderer'
 
 const createRenderer = () => {
   return new ReactRenderer({
+    skipHtml: true,
     softBreak: 'br',
   })
 }
