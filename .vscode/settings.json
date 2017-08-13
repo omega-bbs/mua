@@ -1,4 +1,7 @@
 {
+  "files.exclude": {
+    "**/dist": true
+  },
   "prettier.semi": false,
   "prettier.singleQuote": true,
   "prettier.trailingComma": "all"
