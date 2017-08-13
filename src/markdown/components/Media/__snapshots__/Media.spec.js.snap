@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic 1`] = `
+<mock-media-view>
+  file #1
+</mock-media-view>
+`;
+
+exports[`not found 1`] = `
+<mock-media-view>
+  file not found
+</mock-media-view>
+`;

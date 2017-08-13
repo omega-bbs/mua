@@ -9,7 +9,7 @@ const renderMarkdown = markdown => {
   return renderer.create(<Markdown markdown={markdown} />).toJSON()
 }
 
-test('simple', () => {
+test('basic', () => {
   expect(renderMarkdown('*italic* **bold** `code`')).toMatchSnapshot()
 })
 

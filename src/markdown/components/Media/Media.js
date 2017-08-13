@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { inject, observer } from 'mobx-react'
 
-import parseProtocol from '../../utils/parseProtocol'
+import MediaView from './MediaView'
+import parseProtocol from '../../../utils/parseProtocol'
 
 @inject('markdownStore')
 @observer
@@ -21,11 +22,7 @@ class Media extends React.Component {
   }
 
   render() {
-    const file = this.getFile()
-    if (!file) {
-      return null
-    }
-    return null
+    return <MediaView file={this.getFile()} />
   }
 }
 

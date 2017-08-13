@@ -1,5 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`basic 1`] = `
+<div>
+  <p>
+    <em>
+      italic
+    </em>
+     
+    <strong>
+      bold
+    </strong>
+     
+    <code
+      className={undefined}
+      data-sourcepos={undefined}
+    >
+      code
+    </code>
+  </p>
+</div>
+`;
+
 exports[`media 1`] = `
 <div>
   <p>
@@ -60,27 +81,6 @@ exports[`safe 4`] = `
 <div>
   <p>
     test
-  </p>
-</div>
-`;
-
-exports[`simple 1`] = `
-<div>
-  <p>
-    <em>
-      italic
-    </em>
-     
-    <strong>
-      bold
-    </strong>
-     
-    <code
-      className={undefined}
-      data-sourcepos={undefined}
-    >
-      code
-    </code>
   </p>
 </div>
 `;
