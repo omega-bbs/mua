@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer'
 
 import Markdown from './Markdown'
 
-jest.mock('./components/Media/Media', () => 'mock-media')
+jest.mock('./components/Media', () => 'mock-media')
 
 const renderMarkdown = markdown => {
   return renderer.create(<Markdown markdown={markdown} />).toJSON()
