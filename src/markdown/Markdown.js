@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { action } from 'mobx'
 import { Provider } from 'mobx-react'
 
 import MarkdownStore from './MarkdownStore'
@@ -20,21 +21,23 @@ class Markdown extends React.Component {
 
   store = new MarkdownStore()
 
+  @action
   componentWillMount() {
     this.parse(this.props.markdown)
-    this.store.setFiles(this.props.files)
-    this.store.setMentions(this.props.mentions)
+    this.store.files = this.props.files
+    this.store.mentions = this.props.mentions
   }
 
+  @action
   componentWillReceiveProps(nextProps) {
     if (nextProps.markdown !== this.props.markdown) {
       this.parse(nextProps.markdown)
     }
     if (nextProps.files !== this.props.files) {
-      this.store.setFiles(nextProps.files)
+      this.store.files = nextProps.files
     }
     if (nextProps.mentions !== this.props.mentions) {
-      this.store.setMentions(nextProps.mentions)
+      this.store.mentions = nextProps.mentions
     }
   }
 
