@@ -8,10 +8,10 @@
     "build:production": "NODE_ENV=production webpack",
     "storybook": "start-storybook --port 8081",
     "test": "npm run lint && npm run jest",
-    "jest": "jest",
+    "jest": "jest --setupTestFrameworkScriptFile ./jest.js",
     "lint": "eslint .",
     "prettier": "eslint --fix .",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged && npm run jest"
   },
   "lint-staged": {
     "*.js": [
