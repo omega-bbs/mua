@@ -1,12 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Provider } from 'mobx-react'
 
+import MarkdownStore from './MarkdownStore'
 import parser from './parser'
 import renderer from './renderer'
 
 class Markdown extends React.Component {
   static propTypes = {
     markdown: PropTypes.string.isRequired,
+    files: PropTypes.arrayOf(PropTypes.object),
+    mentions: PropTypes.arrayOf(PropTypes.object),
   }
 
   state = {
@@ -14,13 +18,23 @@ class Markdown extends React.Component {
     vdom: null,
   }
 
+  store = new MarkdownStore()
+
   componentWillMount() {
     this.parse(this.props.markdown)
+    this.store.setFiles(this.props.files)
+    this.store.setMentions(this.props.mentions)
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.markdown !== this.props.markdown) {
       this.parse(nextProps.markdown)
+    }
+    if (nextProps.files !== this.props.files) {
+      this.store.setFiles(nextProps.files)
+    }
+    if (nextProps.mentions !== this.props.mentions) {
+      this.store.setMentions(nextProps.mentions)
     }
   }
 
@@ -35,9 +49,11 @@ class Markdown extends React.Component {
 
   render() {
     return (
-      <div>
-        {this.state.vdom}
-      </div>
+      <Provider markdownStore={this.store}>
+        <div>
+          {this.state.vdom}
+        </div>
+      </Provider>
     )
   }
 }
