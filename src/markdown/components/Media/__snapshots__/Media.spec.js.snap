@@ -6,6 +6,24 @@ exports[`basic 1`] = `
 </mock-media-view>
 `;
 
+exports[`error 1`] = `
+<mock-media-view>
+  file not found
+</mock-media-view>
+`;
+
+exports[`error 2`] = `
+<mock-media-view>
+  file not found
+</mock-media-view>
+`;
+
+exports[`error 3`] = `
+<mock-media-view>
+  file not found
+</mock-media-view>
+`;
+
 exports[`not found 1`] = `
 <mock-media-view>
   file not found

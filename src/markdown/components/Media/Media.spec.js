@@ -43,3 +43,9 @@ test('basic', () => {
 test('not found', () => {
   expect(renderMedia('omega:file/2')).toMatchSnapshot()
 })
+
+test('error', () => {
+  expect(renderMedia('omega:file')).toMatchSnapshot()
+  expect(renderMedia('omega:unknown/1')).toMatchSnapshot()
+  expect(renderMedia('http://example.com/image.png')).toMatchSnapshot()
+})
