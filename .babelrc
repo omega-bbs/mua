@@ -1,19 +1,19 @@
 {
-  "presets": [
-    ["env", { "modules": false }],
-    "stage-0",
-    "react"
-  ],
+  "presets": [["env", { "modules": false }], "stage-0", "react"],
   "plugins": [
     "transform-runtime",
     "transform-decorators-legacy",
     "react-hot-loader/babel"
   ],
   "env": {
+    "development": {
+      "plugins": [["styled-components", { "ssr": true }]]
+    },
+    "production": {
+      "plugins": [["styled-components", { "ssr": true, "displayName": false }]]
+    },
     "test": {
-      "plugins": [
-        "transform-es2015-modules-commonjs"
-      ]
+      "plugins": ["transform-es2015-modules-commonjs"]
     }
   }
 }
