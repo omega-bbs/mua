@@ -3,6 +3,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
+const ManifestPlugin = require('webpack-manifest-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
 module.exports = ({ friendly } = {}) => {
@@ -61,6 +62,11 @@ module.exports = ({ friendly } = {}) => {
         new webpack.optimize.UglifyJsPlugin({
           sourceMap: true,
         }),
+
+      new ManifestPlugin({
+        fileName: 'manifest.json',
+        writeToFileEmit: true,
+      }),
 
       friendly && new FriendlyErrorsPlugin(),
     ].filter(Boolean),
