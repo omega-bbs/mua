@@ -5,11 +5,12 @@ class HTML extends React.Component {
   static propTypes = {
     manifest: PropTypes.object.isRequired,
     helmet: PropTypes.object.isRequired,
+    sheet: PropTypes.object.isRequired,
     content: PropTypes.string.isRequired,
   }
 
   render() {
-    const { manifest, helmet, content } = this.props
+    const { manifest, helmet, sheet, content } = this.props
     return (
       <html {...helmet.htmlAttributes.toComponent()}>
         <head>
@@ -22,6 +23,8 @@ class HTML extends React.Component {
           {helmet.meta.toComponent()}
           {helmet.title.toComponent()}
           {helmet.link.toComponent()}
+
+          {sheet.getStyleElement()}
         </head>
 
         <body {...helmet.bodyAttributes.toComponent()}>

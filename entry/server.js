@@ -2,6 +2,7 @@ import React from 'react'
 import { renderToString, renderToStaticMarkup } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
 import Helmet from 'react-helmet'
+import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
 import fs from 'fs'
 import yargs from 'yargs'
 import Koa from 'koa'
@@ -18,14 +19,17 @@ const app = new Koa()
 
 app.use(async ctx => {
   const router = {}
+  const sheet = new ServerStyleSheet()
 
   const content = renderToString(
     <StaticRouter location={ctx.url} context={router}>
-      <App />
+      <StyleSheetManager sheet={sheet.instance}>
+        <App />
+      </StyleSheetManager>
     </StaticRouter>,
   )
 
-  const helmet = Helmet.rewind()
+  const helmet = Helmet.renderStatic()
 
   if (router.url) {
     ctx.redirect(router.url)
@@ -35,7 +39,12 @@ app.use(async ctx => {
   const html =
     DOCTYPE +
     renderToStaticMarkup(
-      <HTML manifest={manifest} helmet={helmet} content={content} />,
+      <HTML
+        manifest={manifest}
+        helmet={helmet}
+        sheet={sheet}
+        content={content}
+      />,
     )
 
   ctx.body = html
