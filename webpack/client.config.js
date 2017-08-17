@@ -23,7 +23,9 @@ module.exports = ({ friendly } = {}) => {
 
     output: {
       path: path.resolve('./dist/client'),
-      filename: production ? '[name]-[chunkhash].js' : '[name].js',
+      filename: production
+        ? 'assets/[name]-[chunkhash].js'
+        : 'assets/[name].js',
     },
 
     devtool: 'source-map',
