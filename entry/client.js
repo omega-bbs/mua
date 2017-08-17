@@ -8,19 +8,26 @@ import { App } from '../src'
 
 useStrict(true)
 
-const render = () => {
-  ReactDOM.render(
+const render = (hydrate = false) => {
+  const container = document.querySelector('#app')
+  const element = (
     <AppContainer>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </AppContainer>,
-    document.querySelector('#app'),
+    </AppContainer>
   )
+  if (hydrate) {
+    ReactDOM.hydrate(element, container)
+  } else {
+    ReactDOM.render(element, container)
+  }
 }
 
-render()
+render(true)
 
 if (module.hot) {
-  module.hot.accept('../src', render)
+  module.hot.accept('../src', () => {
+    render()
+  })
 }

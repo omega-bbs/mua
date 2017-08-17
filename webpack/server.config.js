@@ -6,7 +6,7 @@ const nodeExternals = require('webpack-node-externals')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
-module.exports = ({ friendly } = {}) => {
+module.exports = ({ friendly = false } = {}) => {
   const production = process.env.NODE_ENV === 'production'
 
   return {
