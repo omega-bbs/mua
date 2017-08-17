@@ -3,9 +3,17 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --hot --open",
-    "build": "webpack",
-    "build:production": "NODE_ENV=production webpack",
+    "start": "node ./dist/server/app.js --manifest ./dist/client/manifest.json",
+    "build": "npm-run-all client:build server:build",
+    "dev": "npm-run-all --parallel dev:*",
+    "dev:start": "nodemon --watch ./dist --exec npm start",
+    "dev:client": "npm run client:serve",
+    "dev:server": "npm run server:watch -- --display none",
+    "client:build": "webpack --config ./webpack/client.config.js",
+    "client:watch": "npm run client:build -- --watch",
+    "client:serve": "webpack-dev-server --config ./webpack/client.config.js --hot --env.friendly --quiet",
+    "server:build": "webpack --config ./webpack/server.config.js",
+    "server:watch": "npm run server:build -- --watch",
     "storybook": "start-storybook --port 8081",
     "test": "npm run lint && npm run jest",
     "jest": "jest --coverage --setupTestFrameworkScriptFile ./jest.js",
@@ -59,9 +67,12 @@
     "jest": "^20.0.4",
     "jest-styled-components": "^4.3.0",
     "lint-staged": "^4.0.3",
+    "nodemon": "^1.11.0",
+    "npm-run-all": "^4.0.2",
     "prettier": "^1.5.3",
     "react-test-renderer": "^16.0.0-beta.5",
     "webpack": "^3.5.2",
-    "webpack-dev-server": "^2.7.1"
+    "webpack-dev-server": "^2.7.1",
+    "webpack-node-externals": "^1.6.0"
   }
 }

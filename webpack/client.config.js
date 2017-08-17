@@ -3,21 +3,25 @@
 const path = require('path')
 const webpack = require('webpack')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
-const HtmlPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
-module.exports = () => {
+module.exports = ({ friendly } = {}) => {
   const production = process.env.NODE_ENV === 'production'
 
   return {
     context: path.resolve('.'),
 
     entry: {
-      app: ['babel-polyfill', 'dom4', 'react-hot-loader/patch', './app.js'],
+      app: [
+        'babel-polyfill',
+        'dom4',
+        'react-hot-loader/patch',
+        './entry/client',
+      ],
     },
 
     output: {
-      path: path.resolve('./dist'),
+      path: path.resolve('./dist/client'),
       filename: production ? '[name]-[chunkhash].js' : '[name].js',
     },
 
@@ -58,19 +62,10 @@ module.exports = () => {
           sourceMap: true,
         }),
 
-      new HtmlPlugin({
-        template: './index.html',
-        minify: production
-          ? { collapseWhitespace: true, removeScriptTypeAttributes: true }
-          : false,
-        xhtml: true,
-      }),
-
-      new FriendlyErrorsPlugin(),
+      friendly && new FriendlyErrorsPlugin(),
     ].filter(Boolean),
 
     devServer: {
-      quiet: true,
       historyApiFallback: true,
       proxy: {
         '/api': {
