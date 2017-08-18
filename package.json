@@ -7,7 +7,7 @@
     "build": "npm-run-all build:*",
     "build:client": "npm run client:build",
     "build:server": "npm run server:build",
-    "proxy": "env PORT=\"${PORT:-8080}\" CLIENT_PORT=\"${CLIENT_PORT:-8081}\" SERVER_PORT=\"${SERVER_PORT:-8082}\" API_PORT=\"${API_PORT:-8000}\" caddy -conf ./proxy/Caddyfile",
+    "proxy": "PORT=\"${PORT:-8080}\" CLIENT_PORT=\"${CLIENT_PORT:-8081}\" SERVER_PORT=\"${SERVER_PORT:-8082}\" API_PORT=\"${API_PORT:-8000}\" caddy -conf ./proxy/Caddyfile",
     "dev": "npm-run-all --parallel dev:*",
     "dev:proxy": "nodemon --watch ./proxy/Caddyfile --exec npm run proxy",
     "dev:start": "nodemon --watch ./dist --exec npm start",
