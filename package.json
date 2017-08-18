@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./dist/server/app.js --manifest ./dist/client/manifest.json",
+    "start": "node ./dist/server/app.js --manifest ./dist/client/manifest.json --port \"${SERVER_PORT:-8082}\"",
     "build": "npm-run-all build:*",
     "build:client": "npm run client:build",
     "build:server": "npm run server:build",

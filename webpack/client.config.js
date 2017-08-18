@@ -74,15 +74,5 @@ module.exports = ({ friendly = false } = {}) => {
 
       friendly && new FriendlyErrorsPlugin(),
     ].filter(Boolean),
-
-    devServer: {
-      historyApiFallback: true,
-      proxy: {
-        '/api': {
-          target: 'http://localhost:8000',
-          pathRewrite: { '^/api': '' },
-        },
-      },
-    },
   }
 }
