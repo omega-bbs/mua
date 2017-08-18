@@ -16,7 +16,7 @@ useStrict(true)
 useStaticRendering(true)
 
 const DOCTYPE = '<!DOCTYPE html>'
-const PORT = process.env.SERVER_PORT || 8082
+const PORT = Number(yargs.argv.port)
 
 const manifest = JSON.parse(fs.readFileSync(yargs.argv.manifest).toString())
 

@@ -58,6 +58,8 @@ module.exports = ({ friendly = false } = {}) => {
 
       new CaseSensitivePathsPlugin(),
 
+      !production && new webpack.NamedModulesPlugin(),
+
       production && new webpack.optimize.ModuleConcatenationPlugin(),
 
       production &&
@@ -72,15 +74,5 @@ module.exports = ({ friendly = false } = {}) => {
 
       friendly && new FriendlyErrorsPlugin(),
     ].filter(Boolean),
-
-    devServer: {
-      historyApiFallback: true,
-      proxy: {
-        '/api': {
-          target: 'http://localhost:8000',
-          pathRewrite: { '^/api': '' },
-        },
-      },
-    },
   }
 }

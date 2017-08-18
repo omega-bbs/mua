@@ -11,7 +11,7 @@ Front-end for ω bbs.
 # PORT=8080
 # CLIENT_PORT=8081
 # SERVER_PORT=8082
-# API_PORT=8083
+# API_PORT=8000
 
 $ npm run dev
 ```

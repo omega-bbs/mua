@@ -4,7 +4,9 @@
     to /proxy-client/{uri}
   }
   proxy / 127.0.0.1:{$SERVER_PORT}
-  proxy /api 127.0.0.1:{$API_PORT}
+  proxy /api 127.0.0.1:{$API_PORT} {
+    without /api
+  }
   proxy /assets 127.0.0.1:{$CLIENT_PORT}
   proxy /proxy-client 127.0.0.1:{$CLIENT_PORT} {
     without /proxy-client
