@@ -58,6 +58,8 @@ module.exports = ({ friendly = false } = {}) => {
 
       new CaseSensitivePathsPlugin(),
 
+      !production && new webpack.NamedModulesPlugin(),
+
       production && new webpack.optimize.ModuleConcatenationPlugin(),
 
       production &&
