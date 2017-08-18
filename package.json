@@ -15,7 +15,7 @@
     "dev:server": "npm run server:watch -- --display none",
     "client:build": "webpack --config ./webpack/client.config.js",
     "client:watch": "npm run client:build -- --watch",
-    "client:serve": "webpack-dev-server --config ./webpack/client.config.js --hot --env.friendly --quiet",
+    "client:serve": "webpack-dev-server --config ./webpack/client.config.js --port \"${CLIENT_PORT:-8081}\" --hot --env.friendly --quiet",
     "server:build": "webpack --config ./webpack/server.config.js",
     "server:watch": "npm run server:build -- --watch",
     "storybook": "start-storybook --port 8081",
