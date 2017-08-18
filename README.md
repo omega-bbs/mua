@@ -8,7 +8,12 @@ Front-end for ω bbs.
 ## Development
 
 ``` shell
-$ npm start
+# PORT=8080
+# CLIENT_PORT=8081
+# SERVER_PORT=8082
+# API_PORT=8083
+
+$ npm run dev
 ```
 
 ## Storybook

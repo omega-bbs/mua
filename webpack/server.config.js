@@ -2,33 +2,30 @@
 
 const path = require('path')
 const webpack = require('webpack')
+const nodeExternals = require('webpack-node-externals')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
-const HtmlPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
-module.exports = () => {
+module.exports = ({ friendly = false } = {}) => {
   const production = process.env.NODE_ENV === 'production'
 
   return {
     context: path.resolve('.'),
 
     entry: {
-      app: ['babel-polyfill', 'dom4', 'react-hot-loader/patch', './app.js'],
+      app: ['babel-polyfill', './entry/server'],
     },
 
     output: {
-      path: path.resolve('./dist'),
-      filename: production ? '[name]-[chunkhash].js' : '[name].js',
+      path: path.resolve('./dist/server'),
+      filename: '[name].js',
     },
+
+    target: 'node',
 
     devtool: 'source-map',
 
-    resolve: {
-      alias: {
-        react: path.resolve('./node_modules/react'),
-        'react-dom': path.resolve('./node_modules/react-dom'),
-      },
-    },
+    externals: [nodeExternals()],
 
     module: {
       rules: [
@@ -58,26 +55,7 @@ module.exports = () => {
           sourceMap: true,
         }),
 
-      new HtmlPlugin({
-        template: './index.html',
-        minify: production
-          ? { collapseWhitespace: true, removeScriptTypeAttributes: true }
-          : false,
-        xhtml: true,
-      }),
-
-      new FriendlyErrorsPlugin(),
+      friendly && new FriendlyErrorsPlugin(),
     ].filter(Boolean),
-
-    devServer: {
-      quiet: true,
-      historyApiFallback: true,
-      proxy: {
-        '/api': {
-          target: 'http://localhost:8000',
-          pathRewrite: { '^/api': '' },
-        },
-      },
-    },
   }
 }
