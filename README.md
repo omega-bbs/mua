@@ -14,6 +14,7 @@ Front-end for ω bbs.
 # API_PORT=8000
 
 $ npm run dev
+# 127.0.0.1:8080
 ```
 
 ## Storybook
