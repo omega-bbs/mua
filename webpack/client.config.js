@@ -23,6 +23,7 @@ module.exports = ({ friendly = false } = {}) => {
 
     output: {
       path: path.resolve('./dist/client'),
+      publicPath: '/',
       filename: production
         ? 'assets/[name]-[chunkhash].js'
         : 'assets/[name].js',
@@ -69,6 +70,7 @@ module.exports = ({ friendly = false } = {}) => {
 
       new ManifestPlugin({
         fileName: 'manifest.json',
+        publicPath: '/',
         writeToFileEmit: true,
       }),
 
