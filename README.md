@@ -35,3 +35,10 @@ $ npm run prettier
 ``` shell
 $ npm run jest
 ```
+
+## Build Docker Image
+
+```shell
+$ npm run docker:build
+$ npm run docker:start # to start a server listened on 8082
+```

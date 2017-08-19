@@ -20,6 +20,8 @@
     "client:serve": "webpack-dev-server --config ./webpack/client.config.js --port \"${CLIENT_PORT:-8081}\" --hot --env.friendly --quiet",
     "server:build": "webpack --config ./webpack/server.config.js",
     "server:watch": "npm run server:build -- --watch",
+    "docker:build": "docker build . -t omegabbs/mua",
+    "docker:start": "docker run --rm -p ${SERVER_PORT:-8082}:80 omegabbs/mua",
     "storybook": "start-storybook --port 8088",
     "test": "npm run lint && npm run jest",
     "jest": "jest --coverage --setupTestFrameworkScriptFile ./jest.js",
@@ -29,10 +31,7 @@
     "precommit": "lint-staged && npm run jest"
   },
   "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ]
+    "*.js": ["eslint --fix", "git add"]
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
