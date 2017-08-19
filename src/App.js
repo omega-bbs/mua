@@ -1,6 +1,7 @@
 import React from 'react'
 import { injectGlobal } from 'styled-components'
 import { Switch, Route } from 'react-router-dom'
+import Helmet from 'react-helmet'
 
 import Introduction from './pages/Introduction'
 
@@ -17,9 +18,12 @@ injectGlobal`
 class App extends React.Component {
   render() {
     return (
-      <Switch>
-        <Route exact path="/" component={Introduction} />
-      </Switch>
+      <div>
+        <Helmet defaultTitle="ω bbs" titleTemplate="%s - ω bbs" />
+        <Switch>
+          <Route exact path="/" component={Introduction} />
+        </Switch>
+      </div>
     )
   }
 }
