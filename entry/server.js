@@ -63,4 +63,7 @@ app.use(async ctx => {
   ctx.body = html
 })
 
-app.listen(PORT)
+app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
+  console.log(`Served at 127.0.0.1:${PORT}.`)
+})
