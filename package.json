@@ -20,7 +20,7 @@
     "client:serve": "webpack-dev-server --config ./webpack/client.config.js --port \"${CLIENT_PORT:-8081}\" --hot --env.friendly --quiet",
     "server:build": "webpack --config ./webpack/server.config.js",
     "server:watch": "npm run server:build -- --watch",
-    "storybook": "start-storybook --port 8081",
+    "storybook": "start-storybook --port 8088",
     "test": "npm run lint && npm run jest",
     "jest": "jest --coverage --setupTestFrameworkScriptFile ./jest.js",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
