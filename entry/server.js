@@ -5,9 +5,11 @@ import Helmet from 'react-helmet'
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
 import { useStrict } from 'mobx'
 import { useStaticRendering } from 'mobx-react'
+import path from 'path'
 import fs from 'fs'
 import yargs from 'yargs'
 import Koa from 'koa'
+import serve from 'koa-static'
 
 import { App } from '../src'
 import { HTML } from '../src/server'
@@ -16,11 +18,17 @@ useStrict(true)
 useStaticRendering(true)
 
 const DOCTYPE = '<!DOCTYPE html>'
-const PORT = Number(yargs.argv.port)
 
-const manifest = JSON.parse(fs.readFileSync(yargs.argv.manifest).toString())
+const argv = yargs.argv
+const PORT = Number(argv.port)
+const MANIFEST = path.resolve(argv.manifest)
+const STATIC = path.resolve(argv.static)
+
+const manifest = JSON.parse(fs.readFileSync(MANIFEST).toString())
 
 const app = new Koa()
+
+app.use(serve(STATIC))
 
 app.use(async ctx => {
   const router = {}

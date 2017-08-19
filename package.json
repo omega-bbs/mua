@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./dist/server/app.js --manifest ./dist/client/manifest.json --port \"${SERVER_PORT:-8082}\"",
+    "start": "node ./dist/server/app.js --port \"${SERVER_PORT:-8082}\" --manifest ./dist/client/manifest.json --static ./dist/client",
     "build": "npm-run-all build:*",
     "build:client": "npm run client:build",
     "build:server": "npm run server:build",
@@ -76,6 +76,7 @@
     "husky": "^0.14.3",
     "jest": "^20.0.4",
     "jest-styled-components": "^4.3.0",
+    "koa-static": "^4.0.1",
     "lint-staged": "^4.0.3",
     "nodemon": "^1.11.0",
     "npm-run-all": "^4.0.2",
