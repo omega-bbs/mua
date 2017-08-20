@@ -18,14 +18,27 @@ injectGlobal`
 `
 
 class App extends React.Component {
+  state = {
+    preview: false,
+  }
+
+  componentDidMount() {
+    this.setState({
+      preview: localStorage.getItem('preview') === 'preview',
+    })
+  }
+
   render() {
     return (
       <div>
         <Helmet defaultTitle="ω bbs" titleTemplate="%s - ω bbs" />
-        <Switch>
-          <Route exact path="/" component={Introduction} />
-          <Route path="/preview" component={Home} />
-        </Switch>
+        {this.state.preview
+          ? <Switch key={true}>
+              <Route path="/" component={Home} />
+            </Switch>
+          : <Switch key={false}>
+              <Route exact path="/" component={Introduction} />
+            </Switch>}
       </div>
     )
   }

@@ -1,21 +1,23 @@
 import React from 'react'
 import styled from 'styled-components'
+import { NavLink } from 'react-router-dom'
 
 import AppHeader from '../components/AppHeader'
 import PageLayout from '../components/PageLayout'
+import BoardList from '../components/BoardList'
 
 const Divider = styled.div`border-top: 1px solid rgba(0, 0, 0, 0.1);`
 
-const CreateTopic = styled.button`
+const CreateTopic = styled(NavLink)`
   display: block;
-  box-sizing: border-box;
   width: 8rem;
   height: 3rem;
   margin: 1rem 0;
-  border: none;
-  font: inherit;
+  border-radius: 2px;
+  line-height: 3rem;
+  text-align: center;
+  text-decoration: none;
   color: #fff;
-  background: none;
   background-color: #3f51b5;
 `
 
@@ -42,10 +44,10 @@ Header.Title = styled.h1`
 `
 
 Header.Sort = styled.select`
-  height: 2em;
+  height: 2rem;
   border: none;
   font: inherit;
-  font-size: 0.875em;
+  font-size: 0.875rem;
   color: rgba(0, 0, 0, 0.6);
   background: none;
 `
@@ -69,13 +71,20 @@ class Home extends React.Component {
             </Header>
           </PageLayout.Main>
           <PageLayout.Sidebar>
-            <CreateTopic>Create Topic</CreateTopic>
+            <CreateTopic to="/create/topic">Create Topic</CreateTopic>
           </PageLayout.Sidebar>
         </PageLayout>
         <Divider />
         <PageLayout>
           <PageLayout.Main />
-          <PageLayout.Sidebar />
+          <PageLayout.Sidebar>
+            <BoardList
+              list={[
+                { id: 0, slug: 'game', name: 'Game' },
+                { id: 1, slug: 'tech', name: 'Tech' },
+              ]}
+            />
+          </PageLayout.Sidebar>
         </PageLayout>
       </div>
     )

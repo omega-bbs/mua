@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { NavLink } from 'react-router-dom'
 
 import Logo from './Logo'
 
@@ -21,13 +22,19 @@ Container.Right = styled.div`
   align-items: center;
 `
 
+Container.Home = styled(NavLink)`
+  text-decoration: none;
+  color: inherit;
+`
+
 Container.Actions = styled.div`
   display: flex;
   margin: 0 -1rem;
 `
 
-Container.Action = styled.a`
+Container.Action = styled(NavLink)`
   display: block;
+  height: 2rem;
   padding: 0 1rem;
   line-height: 2rem;
   text-transform: uppercase;
@@ -40,12 +47,14 @@ class AppHeader extends React.Component {
     return (
       <Container>
         <Container.Left>
-          <Logo />
+          <Container.Home to="/">
+            <Logo />
+          </Container.Home>
         </Container.Left>
         <Container.Right>
           <Container.Actions>
-            <Container.Action href="#">Sign up</Container.Action>
-            <Container.Action href="#">Log in</Container.Action>
+            <Container.Action to="/signup">Sign up</Container.Action>
+            <Container.Action to="/login">Log in</Container.Action>
           </Container.Actions>
         </Container.Right>
       </Container>
