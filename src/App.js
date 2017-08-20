@@ -4,10 +4,12 @@ import { Switch, Route } from 'react-router-dom'
 import Helmet from 'react-helmet'
 
 import Introduction from './pages/Introduction'
+import Home from './pages/Home'
 
 injectGlobal`
   html {
-    font-family: sans-serif;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 16px;
   }
 
   body {
@@ -22,6 +24,7 @@ class App extends React.Component {
         <Helmet defaultTitle="ω bbs" titleTemplate="%s - ω bbs" />
         <Switch>
           <Route exact path="/" component={Introduction} />
+          <Route path="/preview" component={Home} />
         </Switch>
       </div>
     )
