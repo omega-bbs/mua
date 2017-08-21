@@ -26,9 +26,8 @@ class App extends React.Component {
   isPreview() {
     const hostname = this.props.context.hostname
     return (
-      hostname === 'preview.xn--omega.com' ||
-      hostname === 'localhost' ||
-      hostname === '127.0.0.1'
+      process.env.NODE_ENV !== 'production' ||
+      hostname === 'preview.xn--omega.com'
     )
   }
 
