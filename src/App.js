@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { injectGlobal } from 'styled-components'
 import { Switch, Route } from 'react-router-dom'
 import Helmet from 'react-helmet'
@@ -18,21 +19,24 @@ injectGlobal`
 `
 
 class App extends React.Component {
-  state = {
-    preview: false,
+  static propTypes = {
+    context: PropTypes.object.isRequired,
   }
 
-  componentDidMount() {
-    this.setState({
-      preview: localStorage.getItem('preview') === 'preview',
-    })
+  isPreview() {
+    const hostname = this.props.context.hostname
+    return (
+      hostname === 'preview.xn--omega.com' ||
+      hostname === 'localhost' ||
+      hostname === '127.0.0.1'
+    )
   }
 
   render() {
     return (
       <div>
         <Helmet defaultTitle="ω bbs" titleTemplate="%s - ω bbs" />
-        {this.state.preview
+        {this.isPreview()
           ? <Switch key={true}>
               <Route path="/" component={Home} />
             </Switch>

@@ -37,7 +37,7 @@ app.use(async ctx => {
   const content = renderToString(
     <StaticRouter location={ctx.url} context={router}>
       <StyleSheetManager sheet={sheet.instance}>
-        <App />
+        <App context={{ hostname: ctx.hostname }} />
       </StyleSheetManager>
     </StaticRouter>,
   )

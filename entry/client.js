@@ -13,7 +13,7 @@ const render = (hydrate = false) => {
   const element = (
     <AppContainer>
       <BrowserRouter>
-        <App />
+        <App context={{ hostname: location.hostname }} />
       </BrowserRouter>
     </AppContainer>
   )
