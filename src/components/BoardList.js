@@ -8,7 +8,7 @@ const Container = styled.div`padding: 0.5rem 0;`
 
 Container.Divider = styled.div`
   margin: 0.5rem 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 `
 
 class BoardList extends React.Component {
