@@ -6,6 +6,7 @@ import { Transition } from 'react-transition-group'
 import uncontrollable from '../utils/uncontrollable'
 import Subscribe from './Subscribe'
 import Portal from './Portal'
+import Icon from './Icon'
 
 const EMPTY_ITEM = {
   name: null,
@@ -15,12 +16,21 @@ const EMPTY_ITEM = {
 const TRANSITION_DURATION = 300
 
 const Container = styled.div`
-  height: 2.5rem;
-  line-height: 2.5rem;
+  display: flex;
+  align-items: center;
   cursor: pointer;
 `
 
-Container.Text = styled.div``
+Container.Text = styled.div`
+  height: 2.5rem;
+  line-height: 2.5rem;
+`
+
+Container.Icon = styled(Icon)`
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+`
 
 Container.Popover = styled.div`
   position: absolute;
@@ -152,6 +162,7 @@ class Select extends React.Component {
         <Container.Text>
           {selected.name}
         </Container.Text>
+        <Container.Icon name="drop-down" />
       </Container>,
       <Transition
         key="popover"
