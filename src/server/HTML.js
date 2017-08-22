@@ -15,10 +15,12 @@ class HTML extends React.Component {
       <html {...helmet.htmlAttributes.toComponent()}>
         <head>
           <meta charSet="UTF-8" />
+          {/*
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1, user-scalable=0"
           />
+          */}
 
           {helmet.meta.toComponent()}
           {helmet.title.toComponent()}
