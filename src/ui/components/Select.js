@@ -18,6 +18,7 @@ const TRANSITION_DURATION = 300
 const Container = styled.div`
   display: flex;
   align-items: center;
+  user-select: none;
   cursor: pointer;
 `
 
@@ -34,6 +35,7 @@ Container.Icon = styled(Icon)`
 
 Container.Popover = styled.div`
   position: absolute;
+  user-select: none;
   margin: -0.5rem -1rem;
   padding: 0.5rem 0;
   border-radius: 2px;
@@ -123,7 +125,7 @@ class Select extends React.Component {
   handlePosition = () => {
     const index = this.getSelectedIndex()
     const item = this.list.children[index]
-    const rect = this.root.getBoundingClientRect()
+    const rect = this.text.getBoundingClientRect()
     const listRect = this.list.getBoundingClientRect()
     const itemRect = item.getBoundingClientRect()
     const left = rect.left
@@ -133,7 +135,7 @@ class Select extends React.Component {
     item.focus()
   }
 
-  handleDocumentClick = event => {
+  handleDocumentMouseDown = event => {
     if (
       !this.root.contains(event.target) &&
       !this.popover.contains(event.target)
@@ -150,8 +152,8 @@ class Select extends React.Component {
       <Subscribe
         key="subscribe"
         target={() => document}
-        event="click"
-        handler={this.handleDocumentClick}
+        event="mousedown"
+        handler={this.handleDocumentMouseDown}
       />,
       <Container
         key="root"
@@ -159,7 +161,7 @@ class Select extends React.Component {
         onClick={this.handleClick}
         innerRef={node => (this.root = node)}
       >
-        <Container.Text>
+        <Container.Text innerRef={node => (this.text = node)}>
           {selected.name}
         </Container.Text>
         <Container.Icon name="drop-down" />
