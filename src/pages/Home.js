@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 
+import Select from '../ui/components/Select'
+
 import AppHeader from '../components/AppHeader'
 import PageLayout from '../components/PageLayout'
 import BoardList from '../components/BoardList'
@@ -43,13 +45,9 @@ Header.Title = styled.h1`
   font-weight: 400;
 `
 
-Header.Sort = styled.select`
-  height: 2rem;
-  border: none;
-  font: inherit;
+Header.Sort = styled(Select)`
   font-size: 0.875rem;
   color: rgba(0, 0, 0, 0.6);
-  background: none;
 `
 
 class Home extends React.Component {
@@ -65,7 +63,8 @@ class Home extends React.Component {
               </Header.Left>
               <Header.Right>
                 <Header.Sort>
-                  <option>Latest</option>
+                  <Select.Option name="Latest" value="latest" />
+                  <Select.Option name="Newest" value="newest" />
                 </Header.Sort>
               </Header.Right>
             </Header>

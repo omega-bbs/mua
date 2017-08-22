@@ -34,9 +34,9 @@ Container.Actions = styled.div`
 
 Container.Action = styled(NavLink)`
   display: block;
-  height: 2rem;
+  height: 2.5rem;
   padding: 0 1rem;
-  line-height: 2rem;
+  line-height: 2.5rem;
   text-transform: uppercase;
   text-decoration: none;
   color: inherit;
