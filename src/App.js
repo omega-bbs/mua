@@ -36,9 +36,9 @@ class App extends React.Component {
 
   render() {
     return [
+      <Helmet key="helmet" defaultTitle="ω bbs" titleTemplate="%s - ω bbs" />,
       <FocusEffect key="focus" />,
       <div key="root">
-        <Helmet defaultTitle="ω bbs" titleTemplate="%s - ω bbs" />
         {this.isPreview()
           ? <Switch key={true}>
               <Route path="/" component={Home} />
