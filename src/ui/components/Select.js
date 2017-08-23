@@ -215,6 +215,7 @@ class Select extends React.Component {
           target={() => document}
           event="mousedown"
           handler={this.handleDocumentMouseDown}
+          options={{ passive: true }}
         />,
       <Container
         key="root"

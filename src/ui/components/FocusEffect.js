@@ -44,12 +44,14 @@ class FocusEffect extends React.Component {
         target={() => document}
         event="pointerdown"
         handler={this.handlePointerEvent}
+        options={{ passive: true }}
       />,
       <Subscribe
         key="keyboard"
         target={() => document}
         event="keydown"
         handler={this.handleKeyboardEvent}
+        options={{ passive: true }}
       />,
     ]
   }

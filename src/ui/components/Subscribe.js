@@ -6,15 +6,17 @@ class Subscribe extends React.Component {
     target: PropTypes.func.isRequired,
     event: PropTypes.string.isRequired,
     handler: PropTypes.func.isRequired,
+    options: PropTypes.object,
   }
 
   componentDidMount() {
     const target = this.props.target()
     const event = this.props.event
     const handler = this.props.handler
-    target.addEventListener(event, handler)
+    const options = this.props.options
+    target.addEventListener(event, handler, options)
     this.unsubscribe = () => {
-      target.removeEventListener(event, handler)
+      target.removeEventListener(event, handler, options)
     }
   }
 
