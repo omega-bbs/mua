@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Transition } from 'react-transition-group'
 
+import clamp from '../utils/clamp'
 import uncontrollable from '../utils/uncontrollable'
 import Subscribe from './Subscribe'
 import Portal from './Portal'
@@ -13,6 +14,11 @@ const EMPTY_ITEM = {
   value: null,
 }
 
+const VIEWPORT_PADDING = {
+  HORIZONTAL: 24,
+  VERTICAL: 16,
+}
+const MAX_HEIGHT = 320
 const TRANSITION_DURATION = 300
 
 const Container = styled.div`
@@ -35,7 +41,11 @@ Container.Icon = styled(Icon)`
 
 Container.Popover = styled.div`
   position: absolute;
+  left: -9999px;
+  top: -9999px;
+  overflow-y: auto;
   user-select: none;
+  max-height: ${MAX_HEIGHT}px;
   margin: -0.5rem -1rem;
   padding: 0.5rem 0;
   border-radius: 2px;
@@ -83,7 +93,7 @@ class Item extends React.Component {
 class Select extends React.Component {
   static propTypes = {
     className: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.any,
     onChange: PropTypes.func,
     children: PropTypes.node,
   }
@@ -128,10 +138,58 @@ class Select extends React.Component {
     const rect = this.text.getBoundingClientRect()
     const listRect = this.list.getBoundingClientRect()
     const itemRect = item.getBoundingClientRect()
-    const left = rect.left
-    const top = rect.top + (listRect.top - itemRect.top)
-    this.popover.style.left = `${window.pageXOffset + left}px`
-    this.popover.style.top = `${window.pageYOffset + top}px`
+
+    const canScroll = listRect.height > MAX_HEIGHT
+    const clampScrollOffset = scrollOffset =>
+      clamp(scrollOffset, 0, listRect.height - MAX_HEIGHT)
+
+    const resultRect = {
+      left: rect.left,
+      top: rect.top,
+      width: listRect.width,
+      height: Math.min(listRect.height, MAX_HEIGHT),
+    }
+
+    let scrollOffset = 0
+    if (canScroll) {
+      scrollOffset = clampScrollOffset(
+        itemRect.top - listRect.top - (resultRect.height - itemRect.height) / 2,
+      )
+    }
+
+    resultRect.top -= itemRect.top - listRect.top - scrollOffset
+
+    const viewportRect = {
+      left: VIEWPORT_PADDING.HORIZONTAL,
+      right: document.documentElement.clientWidth - VIEWPORT_PADDING.HORIZONTAL,
+      top: VIEWPORT_PADDING.VERTICAL,
+      bottom: document.documentElement.clientHeight - VIEWPORT_PADDING.VERTICAL,
+    }
+
+    const clampedLeft = clamp(
+      resultRect.left,
+      viewportRect.left,
+      viewportRect.right - resultRect.width,
+    )
+    const clampedTop = clamp(
+      resultRect.top,
+      viewportRect.top,
+      viewportRect.bottom - resultRect.height,
+    )
+
+    if (resultRect.top !== clampedTop) {
+      scrollOffset = clampScrollOffset(
+        scrollOffset + (clampedTop - resultRect.top),
+      )
+    }
+
+    resultRect.left = clampedLeft
+    resultRect.top = clampedTop
+
+    this.popover.scrollTop = scrollOffset
+    this.popover.style.left = `${window.pageXOffset + resultRect.left}px`
+    this.popover.style.top = `${window.pageYOffset + resultRect.top}px`
+
     item.focus()
   }
 
@@ -201,8 +259,8 @@ class Select extends React.Component {
 
 Select.Option = () => null
 Select.Option.propTypes = {
-  name: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  name: PropTypes.node.isRequired,
+  value: PropTypes.any.isRequired,
 }
 
 export default Select
