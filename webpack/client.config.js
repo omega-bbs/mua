@@ -16,6 +16,7 @@ module.exports = ({ friendly = false } = {}) => {
       app: [
         'babel-polyfill',
         'dom4',
+        'pepjs',
         'react-hot-loader/patch',
         './entry/client',
       ],
