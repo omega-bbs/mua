@@ -9,6 +9,7 @@ import Home from './pages/Home'
 
 injectGlobal`
   html {
+    min-width: calc(1200px + 2rem + 2rem);
     font-family: "Roboto Condensed", sans-serif;
     font-size: 16px;
   }
