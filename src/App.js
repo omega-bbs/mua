@@ -4,6 +4,8 @@ import { injectGlobal } from 'styled-components'
 import { Switch, Route } from 'react-router-dom'
 import Helmet from 'react-helmet'
 
+import FocusEffect from './ui/components/FocusEffect'
+
 import Introduction from './pages/Introduction'
 import Home from './pages/Home'
 
@@ -33,8 +35,9 @@ class App extends React.Component {
   }
 
   render() {
-    return (
-      <div>
+    return [
+      <FocusEffect key="focus" />,
+      <div key="root">
         <Helmet defaultTitle="ω bbs" titleTemplate="%s - ω bbs" />
         {this.isPreview()
           ? <Switch key={true}>
@@ -43,8 +46,8 @@ class App extends React.Component {
           : <Switch key={false}>
               <Route exact path="/" component={Introduction} />
             </Switch>}
-      </div>
-    )
+      </div>,
+    ]
   }
 }
 
