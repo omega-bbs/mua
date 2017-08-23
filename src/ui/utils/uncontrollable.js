@@ -10,11 +10,19 @@ const uncontrollable = Component => {
     }
 
     state = {
-      value: null,
+      value: this.isControlled() ? this.props.value : null,
     }
 
-    isControlled() {
-      return this.props.value !== undefined
+    componentWillReceiveProps(nextProps) {
+      if (this.isControlled(nextProps)) {
+        this.setState({
+          value: nextProps.value,
+        })
+      }
+    }
+
+    isControlled(props = this.props) {
+      return props.value !== undefined
     }
 
     handleChange = value => {
