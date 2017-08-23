@@ -177,7 +177,7 @@ class Select extends React.Component {
       viewportRect.bottom - resultRect.height,
     )
 
-    if (resultRect.top !== clampedTop) {
+    if (clampedTop !== resultRect.top) {
       scrollOffset = clampScrollOffset(
         scrollOffset + (clampedTop - resultRect.top),
       )
@@ -207,12 +207,13 @@ class Select extends React.Component {
     const index = this.getSelectedIndex()
     const selected = items[index] || EMPTY_ITEM
     return [
-      <Subscribe
-        key="subscribe"
-        target={() => document}
-        event="mousedown"
-        handler={this.handleDocumentMouseDown}
-      />,
+      this.state.selecting &&
+        <Subscribe
+          key="subscribe"
+          target={() => document}
+          event="mousedown"
+          handler={this.handleDocumentMouseDown}
+        />,
       <Container
         key="root"
         className={this.props.className}
