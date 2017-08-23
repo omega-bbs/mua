@@ -130,8 +130,8 @@ class Select extends React.Component {
     const itemRect = item.getBoundingClientRect()
     const left = rect.left
     const top = rect.top + (listRect.top - itemRect.top)
-    this.popover.style.left = `${left}px`
-    this.popover.style.top = `${top}px`
+    this.popover.style.left = `${window.pageXOffset + left}px`
+    this.popover.style.top = `${window.pageYOffset + top}px`
     item.focus()
   }
 
