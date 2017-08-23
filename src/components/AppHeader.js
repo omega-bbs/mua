@@ -23,6 +23,8 @@ Container.Right = styled.div`
 `
 
 Container.Home = styled(NavLink)`
+  margin: 0 -1rem;
+  padding: 0 1rem;
   text-decoration: none;
   color: inherit;
 `
