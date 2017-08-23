@@ -25,6 +25,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   user-select: none;
+  padding-left: 0.5rem;
   cursor: pointer;
 `
 
@@ -54,6 +55,7 @@ Container.Popover = styled.div`
   transition: opacity ${TRANSITION_DURATION}ms;
 
   &:not(.entered) {
+    pointer-events: none;
     opacity: 0;
   }
 `
@@ -217,6 +219,7 @@ class Select extends React.Component {
       <Container
         key="root"
         className={this.props.className}
+        tabIndex={0}
         onClick={this.handleClick}
         innerRef={node => (this.root = node)}
       >
