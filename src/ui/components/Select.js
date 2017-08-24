@@ -155,11 +155,13 @@ class Select extends React.Component {
 
     let scrollOffset = 0;
     if (canScroll) {
+      // try to centering selected item in scrollable popover
       scrollOffset = clampScrollOffset(
         itemRect.top - listRect.top - (resultRect.height - itemRect.height) / 2,
       );
     }
 
+    // align selected item with button
     resultRect.top -= itemRect.top - listRect.top - scrollOffset;
 
     const viewportRect = {
@@ -169,6 +171,7 @@ class Select extends React.Component {
       bottom: document.documentElement.clientHeight - VIEWPORT_PADDING.VERTICAL,
     };
 
+    // adjust popover's position to ensure that popover is inside viewport
     const clampedLeft = clamp(
       resultRect.left,
       viewportRect.left,
@@ -181,6 +184,7 @@ class Select extends React.Component {
     );
 
     if (clampedTop !== resultRect.top) {
+      // try to align selected item with button again
       scrollOffset = clampScrollOffset(
         scrollOffset + (clampedTop - resultRect.top),
       );
