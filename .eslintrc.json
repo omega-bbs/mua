@@ -1,10 +1,6 @@
 {
   "parser": "babel-eslint",
-  "plugins": [
-    "prettier",
-    "import",
-    "react"
-  ],
+  "plugins": ["prettier", "import", "react"],
   "env": {
     "es6": true,
     "node": true,
@@ -17,10 +13,11 @@
     "plugin:react/recommended"
   ],
   "rules": {
-    "prettier/prettier": ["error", {
-      "semi": false,
-      "singleQuote": true,
-      "trailingComma": "all"
-    }]
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "all"
+      }
+    ]
   }
 }

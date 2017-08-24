@@ -1,5 +1,5 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
 
 class HTML extends React.Component {
   static propTypes = {
@@ -7,10 +7,10 @@ class HTML extends React.Component {
     helmet: PropTypes.object.isRequired,
     sheet: PropTypes.object.isRequired,
     content: PropTypes.string.isRequired,
-  }
+  };
 
   render() {
-    const { manifest, helmet, sheet, content } = this.props
+    const { manifest, helmet, sheet, content } = this.props;
     return (
       <html {...helmet.htmlAttributes.toComponent()}>
         <head>
@@ -31,11 +31,11 @@ class HTML extends React.Component {
 
         <body {...helmet.bodyAttributes.toComponent()}>
           <div id="app" dangerouslySetInnerHTML={{ __html: content }} />
-          <script src={manifest['app.js']} />
+          <script src={manifest["app.js"]} />
         </body>
       </html>
-    )
+    );
   }
 }
 
-export default HTML
+export default HTML;

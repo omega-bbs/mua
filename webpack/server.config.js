@@ -1,29 +1,29 @@
 /* eslint-disable import/unambiguous */
 
-const path = require('path')
-const webpack = require('webpack')
-const nodeExternals = require('webpack-node-externals')
-const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
-const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+const path = require("path");
+const webpack = require("webpack");
+const nodeExternals = require("webpack-node-externals");
+const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
+const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin");
 
 module.exports = ({ friendly = false } = {}) => {
-  const production = process.env.NODE_ENV === 'production'
+  const production = process.env.NODE_ENV === "production";
 
   return {
-    context: path.resolve('.'),
+    context: path.resolve("."),
 
     entry: {
-      app: ['babel-polyfill', './entry/server'],
+      app: ["babel-polyfill", "./entry/server"],
     },
 
     output: {
-      path: path.resolve('./dist/server'),
-      filename: '[name].js',
+      path: path.resolve("./dist/server"),
+      filename: "[name].js",
     },
 
-    target: 'node',
+    target: "node",
 
-    devtool: 'source-map',
+    devtool: "source-map",
 
     externals: [nodeExternals()],
 
@@ -32,7 +32,7 @@ module.exports = ({ friendly = false } = {}) => {
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          loader: 'babel-loader',
+          loader: "babel-loader",
         },
       ],
     },
@@ -43,7 +43,7 @@ module.exports = ({ friendly = false } = {}) => {
       }),
 
       new webpack.EnvironmentPlugin({
-        NODE_ENV: production ? 'production' : 'development',
+        NODE_ENV: production ? "production" : "development",
       }),
 
       new CaseSensitivePathsPlugin(),
@@ -59,5 +59,5 @@ module.exports = ({ friendly = false } = {}) => {
 
       friendly && new FriendlyErrorsPlugin(),
     ].filter(Boolean),
-  }
-}
+  };
+};

@@ -1,24 +1,24 @@
-import ReactRenderer from 'commonmark-react-renderer'
+import ReactRenderer from "commonmark-react-renderer";
 
-import Media from './components/Media'
+import Media from "./components/Media";
 
 const createRenderer = () => {
   return new ReactRenderer({
     skipHtml: true,
-    softBreak: 'br',
+    softBreak: "br",
     renderers: {
       image: Media,
     },
-  })
-}
+  });
+};
 
 export default {
   renderer: null,
 
   render(ast) {
     if (!this.renderer) {
-      this.renderer = createRenderer()
+      this.renderer = createRenderer();
     }
-    return this.renderer.render(ast)
+    return this.renderer.render(ast);
   },
-}
+};

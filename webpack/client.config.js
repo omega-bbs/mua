@@ -1,41 +1,41 @@
 /* eslint-disable import/unambiguous */
 
-const path = require('path')
-const webpack = require('webpack')
-const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
-const ManifestPlugin = require('webpack-manifest-plugin')
-const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+const path = require("path");
+const webpack = require("webpack");
+const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
+const ManifestPlugin = require("webpack-manifest-plugin");
+const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin");
 
 module.exports = ({ friendly = false } = {}) => {
-  const production = process.env.NODE_ENV === 'production'
+  const production = process.env.NODE_ENV === "production";
 
   return {
-    context: path.resolve('.'),
+    context: path.resolve("."),
 
     entry: {
       app: [
-        'babel-polyfill',
-        'dom4',
-        'pepjs',
-        'react-hot-loader/patch',
-        './entry/client',
+        "babel-polyfill",
+        "dom4",
+        "pepjs",
+        "react-hot-loader/patch",
+        "./entry/client",
       ],
     },
 
     output: {
-      path: path.resolve('./dist/client'),
-      publicPath: '/',
+      path: path.resolve("./dist/client"),
+      publicPath: "/",
       filename: production
-        ? 'assets/[name]-[chunkhash].js'
-        : 'assets/[name].js',
+        ? "assets/[name]-[chunkhash].js"
+        : "assets/[name].js",
     },
 
-    devtool: 'source-map',
+    devtool: "source-map",
 
     resolve: {
       alias: {
-        react: path.resolve('./node_modules/react'),
-        'react-dom': path.resolve('./node_modules/react-dom'),
+        react: path.resolve("./node_modules/react"),
+        "react-dom": path.resolve("./node_modules/react-dom"),
       },
     },
 
@@ -44,7 +44,7 @@ module.exports = ({ friendly = false } = {}) => {
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          loader: 'babel-loader',
+          loader: "babel-loader",
         },
       ],
     },
@@ -55,7 +55,7 @@ module.exports = ({ friendly = false } = {}) => {
       }),
 
       new webpack.EnvironmentPlugin({
-        NODE_ENV: production ? 'production' : 'development',
+        NODE_ENV: production ? "production" : "development",
       }),
 
       new CaseSensitivePathsPlugin(),
@@ -70,12 +70,12 @@ module.exports = ({ friendly = false } = {}) => {
         }),
 
       new ManifestPlugin({
-        fileName: 'manifest.json',
-        publicPath: '/',
+        fileName: "manifest.json",
+        publicPath: "/",
         writeToFileEmit: true,
       }),
 
       friendly && new FriendlyErrorsPlugin(),
     ].filter(Boolean),
-  }
-}
+  };
+};

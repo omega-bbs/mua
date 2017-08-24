@@ -1,5 +1,5 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
 
 class Subscribe extends React.Component {
   static propTypes = {
@@ -7,26 +7,26 @@ class Subscribe extends React.Component {
     event: PropTypes.string.isRequired,
     handler: PropTypes.func.isRequired,
     options: PropTypes.object,
-  }
+  };
 
   componentDidMount() {
-    const target = this.props.target()
-    const event = this.props.event
-    const handler = this.props.handler
-    const options = this.props.options
-    target.addEventListener(event, handler, options)
+    const target = this.props.target();
+    const event = this.props.event;
+    const handler = this.props.handler;
+    const options = this.props.options;
+    target.addEventListener(event, handler, options);
     this.unsubscribe = () => {
-      target.removeEventListener(event, handler, options)
-    }
+      target.removeEventListener(event, handler, options);
+    };
   }
 
   componentWillUnmount() {
-    this.unsubscribe()
+    this.unsubscribe();
   }
 
   render() {
-    return null
+    return null;
   }
 }
 
-export default Subscribe
+export default Subscribe;

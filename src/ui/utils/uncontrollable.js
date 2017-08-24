@@ -1,5 +1,5 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
 
 const uncontrollable = Component => {
   class UncontrollableComponent extends React.Component {
@@ -7,33 +7,33 @@ const uncontrollable = Component => {
       value: PropTypes.any,
       defaultValue: PropTypes.any,
       onChange: PropTypes.func,
-    }
+    };
 
     state = {
       value: this.isControlled() ? this.props.value : null,
-    }
+    };
 
     componentWillReceiveProps(nextProps) {
       if (this.isControlled(nextProps)) {
         this.setState({
           value: nextProps.value,
-        })
+        });
       }
     }
 
     isControlled(props = this.props) {
-      return props.value !== undefined
+      return props.value !== undefined;
     }
 
     handleChange = value => {
       if (this.isControlled()) {
         if (this.props.onChange) {
-          this.props.onChange(value)
+          this.props.onChange(value);
         }
       } else {
-        this.setState({ value })
+        this.setState({ value });
       }
-    }
+    };
 
     render() {
       return (
@@ -42,11 +42,11 @@ const uncontrollable = Component => {
           value={this.isControlled() ? this.props.value : this.state.value}
           onChange={this.handleChange}
         />
-      )
+      );
     }
   }
 
-  return UncontrollableComponent
-}
+  return UncontrollableComponent;
+};
 
-export default uncontrollable
+export default uncontrollable;

@@ -1,14 +1,14 @@
-import React from 'react'
-import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
+import React from "react";
+import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
-import Select from '../ui/components/Select'
+import Select from "../ui/components/Select";
 
-import AppHeader from '../components/AppHeader'
-import PageLayout from '../components/PageLayout'
-import BoardList from '../components/BoardList'
+import AppHeader from "../components/AppHeader";
+import PageLayout from "../components/PageLayout";
+import BoardList from "../components/BoardList";
 
-const Divider = styled.div`border-top: 1px solid rgba(0, 0, 0, 0.1);`
+const Divider = styled.div`border-top: 1px solid rgba(0, 0, 0, 0.1);`;
 
 const CreateTopic = styled(NavLink)`
   display: block;
@@ -21,34 +21,34 @@ const CreateTopic = styled(NavLink)`
   text-decoration: none;
   color: #fff;
   background-color: #3f51b5;
-`
+`;
 
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
   height: 5rem;
-`
+`;
 
 Header.Left = styled.div`
   display: flex;
   align-items: center;
-`
+`;
 
 Header.Right = styled.div`
   display: flex;
   align-items: center;
-`
+`;
 
 Header.Title = styled.h1`
   margin: 0;
   font-size: 2rem;
   font-weight: 400;
-`
+`;
 
 Header.Sort = styled(Select)`
   font-size: 0.875rem;
   color: rgba(0, 0, 0, 0.6);
-`
+`;
 
 class Home extends React.Component {
   render() {
@@ -79,15 +79,15 @@ class Home extends React.Component {
           <PageLayout.Sidebar>
             <BoardList
               list={[
-                { id: 0, slug: 'game', name: 'Game' },
-                { id: 1, slug: 'tech', name: 'Tech' },
+                { id: 0, slug: "game", name: "Game" },
+                { id: 1, slug: "tech", name: "Tech" },
               ]}
             />
           </PageLayout.Sidebar>
         </PageLayout>
       </div>
-    )
+    );
   }
 }
 
-export default Home
+export default Home;

@@ -1,13 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { injectGlobal } from 'styled-components'
-import { Switch, Route } from 'react-router-dom'
-import Helmet from 'react-helmet'
+import React from "react";
+import PropTypes from "prop-types";
+import { injectGlobal } from "styled-components";
+import { Switch, Route } from "react-router-dom";
+import Helmet from "react-helmet";
 
-import FocusEffect from './ui/components/FocusEffect'
+import FocusEffect from "./ui/components/FocusEffect";
 
-import Introduction from './pages/Introduction'
-import Home from './pages/Home'
+import Introduction from "./pages/Introduction";
+import Home from "./pages/Home";
 
 injectGlobal`
   html {
@@ -19,19 +19,19 @@ injectGlobal`
   body {
     margin: 0;
   }
-`
+`;
 
 class App extends React.Component {
   static propTypes = {
     context: PropTypes.object.isRequired,
-  }
+  };
 
   isPreview() {
-    const hostname = this.props.context.hostname
+    const hostname = this.props.context.hostname;
     return (
-      process.env.NODE_ENV !== 'production' ||
-      hostname === 'preview.xn--omega.com'
-    )
+      process.env.NODE_ENV !== "production" ||
+      hostname === "preview.xn--omega.com"
+    );
   }
 
   render() {
@@ -47,8 +47,8 @@ class App extends React.Component {
               <Route exact path="/" component={Introduction} />
             </Switch>}
       </div>,
-    ]
+    ];
   }
 }
 
-export default App
+export default App;

@@ -1,8 +1,8 @@
-import React from 'react'
-import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
+import React from "react";
+import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
-import Logo from './Logo'
+import Logo from "./Logo";
 
 const Container = styled.div`
   display: flex;
@@ -10,29 +10,29 @@ const Container = styled.div`
   height: 4rem;
   padding: 0 2rem;
   border-bottom: 2px solid;
-`
+`;
 
 Container.Left = styled.div`
   display: flex;
   align-items: center;
-`
+`;
 
 Container.Right = styled.div`
   display: flex;
   align-items: center;
-`
+`;
 
 Container.Home = styled(NavLink)`
   margin: 0 -1rem;
   padding: 0 1rem;
   text-decoration: none;
   color: inherit;
-`
+`;
 
 Container.Actions = styled.div`
   display: flex;
   margin: 0 -1rem;
-`
+`;
 
 Container.Action = styled(NavLink)`
   display: block;
@@ -42,7 +42,7 @@ Container.Action = styled(NavLink)`
   text-transform: uppercase;
   text-decoration: none;
   color: inherit;
-`
+`;
 
 class AppHeader extends React.Component {
   render() {
@@ -60,8 +60,8 @@ class AppHeader extends React.Component {
           </Container.Actions>
         </Container.Right>
       </Container>
-    )
+    );
   }
 }
 
-export default AppHeader
+export default AppHeader;

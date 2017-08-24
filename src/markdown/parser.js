@@ -1,16 +1,16 @@
-import { Parser } from 'commonmark'
+import { Parser } from "commonmark";
 
 const createParser = () => {
-  return new Parser()
-}
+  return new Parser();
+};
 
 export default {
   parser: null,
 
   parse(markdown) {
     if (!this.parser) {
-      this.parser = createParser()
+      this.parser = createParser();
     }
-    return this.parser.parse(markdown)
+    return this.parser.parse(markdown);
   },
-}
+};

@@ -1,7 +1,7 @@
-import React from 'react'
-import { injectGlobal } from 'styled-components'
+import React from "react";
+import { injectGlobal } from "styled-components";
 
-import Subscribe from './Subscribe'
+import Subscribe from "./Subscribe";
 
 injectGlobal`
   :focus {
@@ -11,31 +11,31 @@ injectGlobal`
   html[data-focus-method="keyboard"] :focus {
     box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.5);
   }
-`
+`;
 
 class FocusEffect extends React.Component {
-  currentMethod = null
+  currentMethod = null;
 
   componentDidMount() {
-    this.setMethod('pointer')
+    this.setMethod("pointer");
   }
 
   setMethod(method) {
     if (method !== this.currentMethod) {
-      this.currentMethod = method
-      document.documentElement.dataset.focusMethod = method
+      this.currentMethod = method;
+      document.documentElement.dataset.focusMethod = method;
     }
   }
 
   handlePointerEvent = () => {
-    this.setMethod('pointer')
-  }
+    this.setMethod("pointer");
+  };
 
   handleKeyboardEvent = event => {
     if (event.keyCode === 9) {
-      this.setMethod('keyboard')
+      this.setMethod("keyboard");
     }
-  }
+  };
 
   render() {
     return [
@@ -53,8 +53,8 @@ class FocusEffect extends React.Component {
         handler={this.handleKeyboardEvent}
         options={{ passive: true }}
       />,
-    ]
+    ];
   }
 }
 
-export default FocusEffect
+export default FocusEffect;
