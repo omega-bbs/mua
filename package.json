@@ -28,7 +28,7 @@
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "lint": "eslint .",
     "prettier": "eslint --fix .",
-    "precommit": "lint-staged && npm run jest"
+    "precommit": "lint-staged"
   },
   "lint-staged": {
     "*.js": [
