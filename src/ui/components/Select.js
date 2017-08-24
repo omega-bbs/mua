@@ -48,7 +48,7 @@ Container.Popover = styled.div`
   user-select: none;
   max-height: ${MAX_HEIGHT}px;
   margin: -0.5rem -1rem;
-  padding: 0.5rem 0;
+  padding: 0.5rem 1rem;
   border-radius: 2px;
   background-color: #fff;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -64,6 +64,7 @@ Container.List = styled.div``
 
 Container.Item = styled.div`
   height: 2.5rem;
+  margin: 0 -1rem;
   padding: 0 1rem;
   line-height: 2.5rem;
   cursor: pointer;
