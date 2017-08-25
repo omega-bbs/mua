@@ -35,6 +35,7 @@ Container.Text = styled.div`
 `;
 
 Container.Icon = styled(Icon)`
+  display: block;
   width: 1rem;
   height: 1rem;
   fill: currentColor;

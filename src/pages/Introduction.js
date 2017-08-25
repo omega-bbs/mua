@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import Icon from "../ui/components/Icon";
+
 const Container = styled.div`
   position: fixed;
   display: flex;
@@ -17,24 +19,26 @@ const Header = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 2rem;
 `;
 
-const Logo = styled.img`
+const Logo = styled(Icon)`
   display: block;
-  width: 10rem;
-  height: 10rem;
+  width: 6rem;
+  height: 6rem;
 `;
 
 const Title = styled.h1`
   margin: 0;
+  margin-top: 2rem;
   font-size: 2rem;
-  font-weight: normal;
+  font-weight: 400;
+  line-height: 3rem;
 `;
 
 const Contributers = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 2rem;
 
   @media (max-width: 960px) {
     display: none;
@@ -56,18 +60,20 @@ Contributer.Avatar = styled.img`
 
 Contributer.Content = styled.div`
   flex: 1;
-  padding: 0 2rem;
+  margin-left: 2rem;
 `;
 
 Contributer.Name = styled.h2`
   margin: 0;
   font-size: 1.25rem;
-  font-weight: normal;
+  font-weight: 400;
+  line-height: 2rem;
 `;
 
 Contributer.Title = styled.p`
   margin: 0;
   font-size: 0.75rem;
+  line-height: 1.5rem;
   color: rgba(0, 0, 0, 0.6);
 `;
 
@@ -76,7 +82,7 @@ class Introduction extends React.Component {
     return (
       <Container>
         <Header>
-          <Logo src="https://omega-bbs.github.io/logo/logo.png" />
+          <Logo name="logo" />
           <Title>ω bbs</Title>
         </Header>
         <Contributers>

@@ -41,10 +41,13 @@ class App extends React.Component {
       <div key="root">
         {this.isPreview()
           ? <Switch key={true}>
-              <Route path="/" component={Home} />
+              <Route exact path="/" component={Home} />
+              <Route path="/board/:board" component={Home} />
+              <Route path="/introduction" component={Introduction} />
             </Switch>
           : <Switch key={false}>
               <Route exact path="/" component={Introduction} />
+              <Route path="/introduction" component={Introduction} />
             </Switch>}
       </div>,
     ];

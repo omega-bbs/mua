@@ -70,7 +70,7 @@ class Home extends React.Component {
             </Header>
           </PageLayout.Main>
           <PageLayout.Sidebar>
-            <CreateTopic to="/create/topic">Create Topic</CreateTopic>
+            <CreateTopic to="/topic/new">Create Topic</CreateTopic>
           </PageLayout.Sidebar>
         </PageLayout>
         <Divider />
