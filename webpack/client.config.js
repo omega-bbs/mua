@@ -3,6 +3,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
+const BabelMinifyPlugin = require("babel-minify-webpack-plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin");
 
@@ -64,10 +65,7 @@ module.exports = ({ friendly = false } = {}) => {
 
       production && new webpack.optimize.ModuleConcatenationPlugin(),
 
-      production &&
-        new webpack.optimize.UglifyJsPlugin({
-          sourceMap: true,
-        }),
+      production && new BabelMinifyPlugin(),
 
       new ManifestPlugin({
         fileName: "manifest.json",

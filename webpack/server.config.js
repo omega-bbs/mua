@@ -4,6 +4,7 @@ const path = require("path");
 const webpack = require("webpack");
 const nodeExternals = require("webpack-node-externals");
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
+const BabelMinifyPlugin = require("babel-minify-webpack-plugin");
 const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin");
 
 module.exports = ({ friendly = false } = {}) => {
@@ -52,10 +53,7 @@ module.exports = ({ friendly = false } = {}) => {
 
       production && new webpack.optimize.ModuleConcatenationPlugin(),
 
-      production &&
-        new webpack.optimize.UglifyJsPlugin({
-          sourceMap: true,
-        }),
+      production && new BabelMinifyPlugin(),
 
       friendly && new FriendlyErrorsPlugin(),
     ].filter(Boolean),
