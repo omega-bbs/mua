@@ -3,7 +3,7 @@ const production = process.env.NODE_ENV === "production";
 module.exports = {
   presets: [["env", { spec: true, modules: false }], "stage-0", "react"],
   plugins: [
-    "transform-runtime",
+    ["transform-runtime", { polyfill: false, useBuiltIns: true }],
     ["styled-components", { ssr: true, displayName: !production }],
     "react-hot-loader/babel",
   ],
