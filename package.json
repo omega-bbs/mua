@@ -61,6 +61,7 @@
   "devDependencies": {
     "babel-core": "^7.0.0-alpha.19",
     "babel-eslint": "^8.0.0-alpha.17",
+    "babel-jest": "^21.0.0-beta.1",
     "babel-loader": "^7.1.2",
     "babel-plugin-styled-components": "^1.1.7",
     "babel-plugin-transform-es2015-modules-commonjs": "^7.0.0-alpha.19",
@@ -77,6 +78,8 @@
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",
     "husky": "^0.14.3",
+    "jest": "^21.0.0-beta.1",
+    "jest-styled-components": "^4.4.1",
     "lint-staged": "^4.0.4",
     "nodemon": "^1.11.0",
     "npm-run-all": "^4.0.2",
