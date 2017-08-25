@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+const req = require.context("svg-react-loader!../assets/icons", true, /\.svg$/);
+
 class Icon extends React.PureComponent {
   static propTypes = {
     className: PropTypes.string,
@@ -9,7 +11,7 @@ class Icon extends React.PureComponent {
 
   render() {
     const name = this.props.name;
-    const Icon = require(`svg-react-loader!../assets/icons/${name}.svg`);
+    const Icon = req(`./${name}.svg`);
     return <Icon className={this.props.className} />;
   }
 }
