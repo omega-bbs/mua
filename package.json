@@ -22,7 +22,6 @@
     "server:watch": "npm run server:build -- --watch",
     "docker:build": "docker build --tag omegabbs/mua .",
     "docker:start": "docker run --rm --publish \"${SERVER_PORT:-8082}:80\" omegabbs/mua",
-    "storybook": "start-storybook --port 8088",
     "test": "npm run lint && npm run jest",
     "jest": "jest --coverage --setupTestFrameworkScriptFile ./jest.js",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
