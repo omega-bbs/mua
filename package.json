@@ -86,6 +86,8 @@
     "prettier": "^1.5.3",
     "react-test-renderer": "^16.0.0-beta.5",
     "svg-react-loader": "^0.4.4",
+    "svgo": "^0.7.2",
+    "svgo-loader": "^1.2.1",
     "wait-on": "^2.0.2",
     "webpack": "^3.5.5",
     "webpack-dev-server": "^2.7.1",

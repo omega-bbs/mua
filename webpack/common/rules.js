@@ -1,5 +1,7 @@
 /* eslint-disable import/unambiguous */
 
+const production = process.env.NODE_ENV === "production";
+
 module.exports = [
   {
     test: /\.js$/,
@@ -9,6 +11,9 @@ module.exports = [
 
   {
     test: /\.svg$/,
-    loader: "svg-react-loader",
+    use: [
+      { loader: "svg-react-loader" },
+      production && { loader: "svgo-loader" },
+    ].filter(Boolean),
   },
 ];
