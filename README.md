@@ -17,12 +17,6 @@ Front-end for ω bbs.
 $ npm run dev # 127.0.0.1:8080
 ```
 
-## Storybook
-
-``` shell
-$ npm run storybook
-```
-
 ## Lint / Format
 
 ``` shell
