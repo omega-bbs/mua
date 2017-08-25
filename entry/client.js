@@ -27,7 +27,7 @@ const render = (hydrate = false) => {
 render(true);
 
 if (module.hot) {
-  module.hot.accept("../src", () => {
+  module.hot.accept("../src", function() {
     render();
   });
 }
