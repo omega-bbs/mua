@@ -7,6 +7,8 @@ const BabelMinifyPlugin = require("babel-minify-webpack-plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin");
 
+const rules = require("./common/rules");
+
 module.exports = ({ friendly = false } = {}) => {
   const production = process.env.NODE_ENV === "production";
 
@@ -41,18 +43,7 @@ module.exports = ({ friendly = false } = {}) => {
     },
 
     module: {
-      rules: [
-        {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          loader: "babel-loader",
-        },
-
-        {
-          test: /\.svg$/,
-          loader: "svg-react-loader",
-        },
-      ],
+      rules,
     },
 
     plugins: [

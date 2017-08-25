@@ -7,6 +7,8 @@ const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
 const BabelMinifyPlugin = require("babel-minify-webpack-plugin");
 const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin");
 
+const rules = require("./common/rules");
+
 module.exports = ({ friendly = false } = {}) => {
   const production = process.env.NODE_ENV === "production";
 
@@ -29,18 +31,7 @@ module.exports = ({ friendly = false } = {}) => {
     externals: [nodeExternals()],
 
     module: {
-      rules: [
-        {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          loader: "babel-loader",
-        },
-
-        {
-          test: /\.svg$/,
-          loader: "svg-react-loader",
-        },
-      ],
+      rules,
     },
 
     plugins: [
