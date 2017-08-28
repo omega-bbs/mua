@@ -53,9 +53,7 @@ class Markdown extends React.Component {
   render() {
     return (
       <Provider markdownStore={this.store}>
-        <div>
-          {this.state.vdom}
-        </div>
+        <div>{this.state.vdom}</div>
       </Provider>
     );
   }

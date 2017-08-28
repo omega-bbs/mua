@@ -32,9 +32,7 @@ class PageLayout extends React.Component {
   render() {
     return (
       <Container>
-        <Container.Layout>
-          {this.props.children}
-        </Container.Layout>
+        <Container.Layout>{this.props.children}</Container.Layout>
       </Container>
     );
   }

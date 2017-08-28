@@ -18,11 +18,7 @@ jest.mock("./MediaView", () => {
       if (!file) {
         return <mock-media-view>file not found</mock-media-view>;
       }
-      return (
-        <mock-media-view>
-          {`file #${file.id}`}
-        </mock-media-view>
-      );
+      return <mock-media-view>{`file #${file.id}`}</mock-media-view>;
     }
   }
 

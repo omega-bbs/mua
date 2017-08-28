@@ -215,14 +215,15 @@ class Select extends React.Component {
     const index = this.getSelectedIndex();
     const selected = items[index] || EMPTY_ITEM;
     return [
-      this.state.selecting &&
+      this.state.selecting && (
         <Subscribe
           key="subscribe"
           target={() => document}
           event="mousedown"
           handler={this.handleDocumentMouseDown}
           options={{ passive: true }}
-        />,
+        />
+      ),
       <Container
         key="root"
         className={this.props.className}
@@ -243,7 +244,7 @@ class Select extends React.Component {
         unmountOnExit
         onEntering={this.handlePosition}
       >
-        {status =>
+        {status => (
           <Portal>
             <Container.Popover
               className={status}
@@ -251,18 +252,19 @@ class Select extends React.Component {
               innerRef={node => (this.popover = node)}
             >
               <Container.List innerRef={node => (this.list = node)}>
-                {items.map(item =>
+                {items.map(item => (
                   <Item
                     key={item.value}
                     tabIndex={0}
                     onClick={() => this.handleItemClick(item.value)}
                   >
                     {item.name}
-                  </Item>,
-                )}
+                  </Item>
+                ))}
               </Container.List>
             </Container.Popover>
-          </Portal>}
+          </Portal>
+        )}
       </Transition>,
     ];
   }

@@ -36,9 +36,7 @@ class BoardListItem extends React.Component {
     return (
       <Container exact to={data.slug ? `/board/${data.slug}` : "/"}>
         <Container.Indicator />
-        <Container.Text>
-          {data.name}
-        </Container.Text>
+        <Container.Text>{data.name}</Container.Text>
       </Container>
     );
   }
