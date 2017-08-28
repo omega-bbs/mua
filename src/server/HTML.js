@@ -22,6 +22,8 @@ class HTML extends React.Component {
           />
           */}
 
+          <link rel="preload" as="script" href={manifest["app.js"]} />
+
           {helmet.meta.toComponent()}
           {helmet.title.toComponent()}
           {helmet.link.toComponent()}
