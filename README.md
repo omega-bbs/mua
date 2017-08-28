@@ -30,9 +30,9 @@ $ npm run prettier
 $ npm run jest
 ```
 
-## Build Docker Image
+## Docker
 
 ```shell
 $ npm run docker:build
-$ npm run docker:start # to start a server listened on 8082
+$ npm run docker:start # 127.0.0.1:8082
 ```
