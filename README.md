@@ -33,6 +33,8 @@ $ npm run jest
 ## Docker
 
 ```shell
+# SERVER_PORT=8082
+
 $ npm run docker:build
 $ npm run docker:start # 127.0.0.1:8082
 ```
