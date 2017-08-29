@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 
 import Select from "../ui/components/Select";
 
-import AppHeader from "../components/AppHeader";
 import PageLayout from "../components/PageLayout";
 import BoardList from "../components/BoardList";
 
@@ -54,7 +53,6 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <AppHeader />
         <PageLayout>
           <PageLayout.Main>
             <Header>

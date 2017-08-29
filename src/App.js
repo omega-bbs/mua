@@ -6,6 +6,7 @@ import Helmet from "react-helmet";
 
 import FocusEffect from "./ui/components/FocusEffect";
 
+import AppHeader from "./components/AppHeader";
 import Introduction from "./pages/Introduction";
 import Home from "./pages/Home";
 
@@ -38,6 +39,7 @@ class App extends React.Component {
     return [
       <Helmet key="helmet" defaultTitle="ω bbs" titleTemplate="%s - ω bbs" />,
       <FocusEffect key="focus" />,
+      this.isPreview() && <AppHeader key="header" />,
       <div key="root">
         {this.isPreview() ? (
           <Switch key={true}>

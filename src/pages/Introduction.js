@@ -5,6 +5,8 @@ import Icon from "../ui/components/Icon";
 
 const Container = styled.div`
   position: fixed;
+  left: 0;
+  top: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,6 +28,7 @@ const Logo = styled(Icon)`
   display: block;
   width: 6rem;
   height: 6rem;
+  fill: currentColor;
 `;
 
 const Title = styled.h1`
