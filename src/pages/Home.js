@@ -6,6 +6,7 @@ import Select from "../ui/components/Select";
 
 import PageLayout from "../components/PageLayout";
 import BoardList from "../components/BoardList";
+import TopicList from "../components/TopicList";
 
 const Divider = styled.div`border-top: 1px solid rgba(0, 0, 0, 0.1);`;
 
@@ -45,7 +46,7 @@ Header.Title = styled.h1`
 `;
 
 Header.Sort = styled(Select)`
-  font-size: 0.875rem;
+  font-size: ${14 / 16}rem;
   color: rgba(0, 0, 0, 0.6);
 `;
 
@@ -73,7 +74,15 @@ class Home extends React.Component {
         </PageLayout>
         <Divider />
         <PageLayout>
-          <PageLayout.Main />
+          <PageLayout.Main>
+            <TopicList
+              list={[
+                { id: 1, title: "foo", postCount: 10 },
+                { id: 2, title: "bar", postCount: 20 },
+                { id: 3, title: "baz", postCount: 30 },
+              ]}
+            />
+          </PageLayout.Main>
           <PageLayout.Sidebar>
             <BoardList
               list={[

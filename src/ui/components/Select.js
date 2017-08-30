@@ -34,12 +34,7 @@ Container.Text = styled.div`
   line-height: 2.5rem;
 `;
 
-Container.Icon = styled(Icon)`
-  display: block;
-  width: 1rem;
-  height: 1rem;
-  fill: currentColor;
-`;
+Container.Icon = styled(Icon)``;
 
 Container.Popover = styled.div`
   position: absolute;
@@ -234,7 +229,7 @@ class Select extends React.Component {
         <Container.Text innerRef={node => (this.text = node)}>
           {selected.name}
         </Container.Text>
-        <Container.Icon name="drop-down" />
+        <Container.Icon name="dropdown" />
       </Container>,
       <Transition
         key="popover"

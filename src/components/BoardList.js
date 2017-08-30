@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import BoardListItem from "./BoardListItem";
+import BoardItem from "./BoardItem";
 
 const Container = styled.div`padding: 0.5rem 0;`;
 
@@ -20,9 +20,9 @@ class BoardList extends React.Component {
     const list = this.props.list;
     return (
       <Container>
-        <BoardListItem data={{ id: null, slug: null, name: "All" }} />
+        <BoardItem data={{ id: null, slug: null, name: "All" }} />
         <Container.Divider />
-        {list.map(item => <BoardListItem key={item.id} data={item} />)}
+        {list.map(item => <BoardItem key={item.id} data={item} />)}
       </Container>
     );
   }

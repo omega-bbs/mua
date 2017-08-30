@@ -24,9 +24,9 @@ Container.Indicator = styled.div`
   background-color: #e0e0e0;
 `;
 
-Container.Text = styled.div``;
+Container.Text = styled.div`font-size: ${15 / 16}rem;`;
 
-class BoardListItem extends React.Component {
+class BoardItem extends React.Component {
   static propTypes = {
     data: PropTypes.object.isRequired,
   };
@@ -42,4 +42,4 @@ class BoardListItem extends React.Component {
   }
 }
 
-export default BoardListItem;
+export default BoardItem;

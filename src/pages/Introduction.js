@@ -25,10 +25,8 @@ const Header = styled.div`
 `;
 
 const Logo = styled(Icon)`
-  display: block;
   width: 6rem;
   height: 6rem;
-  fill: currentColor;
 `;
 
 const Title = styled.h1`

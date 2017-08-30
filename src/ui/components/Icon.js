@@ -1,7 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 
 const req = require.context("../assets/icons", true, /\.svg$/);
+
+const Container = styled.div`
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+`;
 
 class Icon extends React.PureComponent {
   static propTypes = {
@@ -16,4 +24,4 @@ class Icon extends React.PureComponent {
   }
 }
 
-export default Icon;
+export default Container.withComponent(Icon);
