@@ -1,7 +1,8 @@
 FROM node:8.4 as build
 
-COPY . /app
 WORKDIR /app
+
+COPY . /app
 
 RUN \
   npm install && \
