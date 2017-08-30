@@ -1,7 +1,7 @@
 # mua
 
-[![Build Status](https://circleci.com/gh/omega-bbs/mua.svg?style=svg)](https://circleci.com/gh/omega-bbs/mua)
-[![Coverage Status](https://codecov.io/gh/omega-bbs/mua/branch/master/graph/badge.svg)](https://codecov.io/gh/omega-bbs/mua)
+[![Build Status](https://circleci.com/gh/omega-bbs/mua.svg?style=shield)](https://circleci.com/gh/omega-bbs/mua)
+[![Coverage Status](https://codecov.io/gh/omega-bbs/mua/graph/badge.svg)](https://codecov.io/gh/omega-bbs/mua)
 [![Docker Build Status](https://img.shields.io/docker/build/omegabbs/mua.svg)](https://hub.docker.com/r/omegabbs/mua/)
 
 Front-end for ω bbs.
