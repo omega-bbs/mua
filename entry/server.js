@@ -64,6 +64,8 @@ app.use(async ctx => {
 });
 
 app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Served at 127.0.0.1:${PORT}.`);
+  if (process.env.NODE_ENV === "production") {
+    // eslint-disable-next-line no-console
+    console.log(`Served at 127.0.0.1:${PORT}.`);
+  }
 });
