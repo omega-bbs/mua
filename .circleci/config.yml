@@ -12,7 +12,7 @@ jobs:
       - run: npm install
       - run: npm run test && npm run report-coverage
       - run: NODE_ENV=production npm run build
-      - run: curl -XPOST -s $DOCKER_HUB_BUILD_TRIGGER_URL || true
+      - run: [ "$CIRCLE_BRANCH" == "master" ] && curl --request POST "$DOCKER_HUB_BUILD_TRIGGER_URL" || true
       - save_cache:
           key: v1-dependencies-{{ checksum "./package.json" }}
           paths:
