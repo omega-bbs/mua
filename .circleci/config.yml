@@ -9,6 +9,7 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "./package.json" }}
             - v1-dependencies-
+      - run: npm install
       - run: npm run test && npm run report-coverage
       - run: NODE_ENV=production npm run build
       - save_cache:
