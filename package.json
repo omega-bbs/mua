@@ -24,7 +24,7 @@
     "docker:build": "docker build --tag omegabbs/mua .",
     "test": "npm run lint && npm run jest",
     "jest": "jest --coverage --setupTestFrameworkScriptFile ./jest.js",
-    "report-coverage": "cat ./coverage/lcov.info | coveralls",
+    "report-coverage": "cat ./coverage/lcov.info | codecov",
     "lint": "eslint .",
     "prettier": "eslint --fix .",
     "precommit": "lint-staged"
@@ -70,7 +70,7 @@
     "babel-preset-react": "^7.0.0-alpha.19",
     "babel-preset-stage-0": "^7.0.0-alpha.19",
     "case-sensitive-paths-webpack-plugin": "^2.1.1",
-    "coveralls": "^2.13.1",
+    "codecov": "^2.3.0",
     "eslint": "^4.5.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-prettier": "^2.2.0",
