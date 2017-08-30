@@ -1,29 +1,32 @@
 version: 2
-jobs:
+workflows:
+  version: 2
   build:
-    docker:
-      - image: circleci/node:8.4
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "./package.json" }}
-            - v1-dependencies-
-      - run: npm install
-      - run: npm run test && npm run report-coverage
-      - run: NODE_ENV=production npm run build
-      - save_cache:
-          key: v1-dependencies-{{ checksum "./package.json" }}
-          paths:
-            - node_modules
+    jobs:
+      docker:
+        - image: circleci/node:8.4
+      steps:
+        - checkout
+        - restore_cache:
+            keys:
+              - v1-dependencies-{{ checksum "./package.json" }}
+              - v1-dependencies-
+        - run: npm install
+        - run: npm run test && npm run report-coverage
+        - run: NODE_ENV=production npm run build
+        - save_cache:
+            key: v1-dependencies-{{ checksum "./package.json" }}
+            paths:
+              - node_modules
   docker-hub:
-    requies:
-      - build
-    filters:
-      branches:
-        only:
-          - master
-    docker:
-      - image: circleci/node:8.4
-    steps:
-      - run: curl -XPOST -s $DOCKER_HUB_BUILD_TRIGGER_URL || true
+    jobs:
+      requies:
+        - build
+      filters:
+        branches:
+          only:
+            - master
+      docker:
+        - image: circleci/node:8.4
+      steps:
+        - run: curl -XPOST -s $DOCKER_HUB_BUILD_TRIGGER_URL || true
