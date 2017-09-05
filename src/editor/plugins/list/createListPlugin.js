@@ -114,10 +114,10 @@ const createListPlugin = () => {
 
       let convertTo = null;
 
-      if (/^[-*]$/.test(prefix)) {
+      if (prefix === "-" || prefix === "*") {
         convertTo = "unordered-list-item";
       }
-      if (/^\d+\.$/.test(prefix)) {
+      if (prefix === "1.") {
         convertTo = "ordered-list-item";
       }
 
