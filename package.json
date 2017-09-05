@@ -39,6 +39,8 @@
     "babel-polyfill": "^7.0.0-alpha.19",
     "babel-runtime": "^7.0.0-alpha.19",
     "dom4": "^1.8.5",
+    "draft-js": "^0.10.1",
+    "draft-js-plugins-editor": "^2.0.0-rc5",
     "koa": "^2.3.0",
     "koa-static": "^4.0.1",
     "mobx": "^3.2.2",
