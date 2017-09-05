@@ -38,8 +38,6 @@
   "dependencies": {
     "babel-polyfill": "^7.0.0-alpha.19",
     "babel-runtime": "^7.0.0-alpha.19",
-    "commonmark": "^0.28.1",
-    "commonmark-react-renderer": "^4.3.3",
     "dom4": "^1.8.5",
     "koa": "^2.3.0",
     "koa-static": "^4.0.1",
