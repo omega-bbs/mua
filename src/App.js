@@ -9,6 +9,7 @@ import FocusEffect from "./ui/components/FocusEffect";
 import AppHeader from "./components/AppHeader";
 import Introduction from "./pages/Introduction";
 import Home from "./pages/Home";
+import TopicCreator from "./pages/TopicCreator";
 
 injectGlobal`
   html {
@@ -45,6 +46,7 @@ class App extends React.Component {
           <Switch key={true}>
             <Route exact path="/" component={Home} />
             <Route path="/board/:board" component={Home} />
+            <Route path="/topic/new" component={TopicCreator} />
             <Route path="/introduction" component={Introduction} />
           </Switch>
         ) : (

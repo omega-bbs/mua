@@ -34,9 +34,7 @@ class Portal extends React.Component {
   }
 
   render() {
-    if (!this.state.mounted) {
-      return null;
-    }
+    if (!this.state.mounted) return null;
     return createPortal(this.props.children, this.getTarget());
   }
 }
