@@ -43,7 +43,7 @@ module.exports = ({ friendly = false } = {}) => {
     },
 
     module: {
-      rules,
+      rules: rules("client"),
     },
 
     plugins: [

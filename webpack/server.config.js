@@ -28,10 +28,14 @@ module.exports = ({ friendly = false } = {}) => {
 
     devtool: "source-map",
 
-    externals: [nodeExternals()],
+    externals: [
+      nodeExternals({
+        whitelist: [/\.(?!(js|json)$)[^.]+$/],
+      }),
+    ],
 
     module: {
-      rules,
+      rules: rules("server"),
     },
 
     plugins: [

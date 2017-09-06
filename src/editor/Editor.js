@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import DraftEditor from "draft-js-plugins-editor";
+import "draft-js/dist/Draft.css";
 
 import getPlugins from "./getPlugins";
 
