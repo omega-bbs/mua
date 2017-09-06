@@ -20,6 +20,10 @@ const Container = styled.div`
     }
   }
 
+  .public-DraftEditorPlaceholder-root {
+    margin: 1rem 0;
+  }
+
   .Editor-unstyled {
     margin: 0;
   }
