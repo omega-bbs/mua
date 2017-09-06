@@ -1,8 +1,10 @@
-import createBasePlugin from "./plugins/base";
-import createListPlugin from "./plugins/list";
+import base from "./plugins/base";
+import block from "./plugins/block";
+import markdown from "./plugins/markdown";
+import divider from "./plugins/divider";
 
 const getPlugins = () => {
-  return [createBasePlugin(), createListPlugin()].reverse();
+  return [base(), block(), markdown(), divider()].reverse();
 };
 
 export default getPlugins;

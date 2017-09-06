@@ -1,16 +1,26 @@
+import React from "react";
+import Immutable from "immutable";
 import { EditorState, Modifier } from "draft-js";
 
 import setBlockType from "../../utils/setBlockType";
 import setBlockDepth from "../../utils/setBlockDepth";
-import insertText from "../../utils/insertText";
 
-const createListPlugin = () => {
+const BLOCK_TYPES = ["unordered-list-item", "ordered-list-item", "blockquote"];
+
+const createBlockPlugin = () => {
   const store = {};
 
   return {
     initialize: pluginFunctions => {
       Object.assign(store, pluginFunctions);
     },
+
+    blockRenderMap: Immutable.Map({
+      blockquote: {
+        element: "blockquote",
+        wrapper: <blockquote />,
+      },
+    }),
 
     handleReturn: () => {
       const editorState = store.getEditorState();
@@ -22,15 +32,15 @@ const createListPlugin = () => {
       const blockKey = selection.getFocusKey();
       const block = contentState.getBlockForKey(blockKey);
 
-      if (!block.getType().endsWith("list-item")) return "not-handled";
+      if (!BLOCK_TYPES.includes(block.getType())) return "not-handled";
 
       const length = block.getLength();
       if (length === 0) {
         const depth = block.getDepth();
         const newEditorState = depth
-          ? // unindent list
+          ? // unindent block
             setBlockDepth(editorState, blockKey, depth - 1)
-          : // exit list
+          : // exit block
             setBlockType(editorState, blockKey, "unstyled");
         store.setEditorState(newEditorState);
         return "handled";
@@ -52,11 +62,11 @@ const createListPlugin = () => {
       const blockKey = selection.getFocusKey();
       const block = contentState.getBlockForKey(blockKey);
 
-      if (!block.getType().endsWith("list-item")) return "not-handled";
+      if (!BLOCK_TYPES.includes(block.getType())) return "not-handled";
 
       const depth = block.getDepth();
       if (depth) {
-        // unindent list
+        // unindent block
         const newEditorState = setBlockDepth(editorState, blockKey, depth - 1);
         store.setEditorState(newEditorState);
         return "handled";
@@ -68,7 +78,7 @@ const createListPlugin = () => {
 
       let newContentState = contentState;
 
-      // Step #1: exit list
+      // Step #1: exit block
       newContentState = Modifier.setBlockType(
         newContentState,
         selection,
@@ -93,71 +103,7 @@ const createListPlugin = () => {
       store.setEditorState(newEditorState);
       return "handled";
     },
-
-    // convert markdown-like markup to list
-    handleBeforeInput: char => {
-      if (char !== " ") return "not-handled";
-
-      const editorState = store.getEditorState();
-      const selection = editorState.getSelection();
-
-      if (!selection.isCollapsed()) return "not-handled";
-
-      const contentState = editorState.getCurrentContent();
-      const blockKey = selection.getFocusKey();
-      const block = contentState.getBlockForKey(blockKey);
-
-      if (block.getType() !== "unstyled") return "not-handled";
-
-      const offset = selection.getFocusOffset();
-      const prefix = block.getText().slice(0, offset);
-
-      let convertTo = null;
-
-      if (prefix === "-" || prefix === "*") {
-        convertTo = "unordered-list-item";
-      }
-      if (prefix === "1.") {
-        convertTo = "ordered-list-item";
-      }
-
-      if (!convertTo) return "not-handled";
-
-      const inlineStyle = editorState.getCurrentInlineStyle();
-
-      // Step #1: insert space (for undo)
-      let newEditorState = insertText(editorState, char);
-      let newContentState = newEditorState.getCurrentContent();
-
-      // Setp #2: remove prefix
-      newContentState = Modifier.removeRange(
-        newContentState,
-        newEditorState.getSelection().merge({ anchorOffset: 0 }),
-        "backward",
-      );
-
-      // Step #3: convert to list
-      newContentState = Modifier.setBlockType(
-        newContentState,
-        newContentState.getSelectionAfter(),
-        convertTo,
-      );
-      newEditorState = EditorState.push(
-        newEditorState,
-        newContentState,
-        "change-block-type",
-      );
-
-      // Step #4: restore inline style
-      newEditorState = EditorState.setInlineStyleOverride(
-        newEditorState,
-        inlineStyle,
-      );
-
-      store.setEditorState(newEditorState);
-      return "handled";
-    },
   };
 };
 
-export default createListPlugin;
+export default createBlockPlugin;
