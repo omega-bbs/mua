@@ -7,6 +7,10 @@ import setBlockDepth from "../../utils/setBlockDepth";
 
 const BLOCK_TYPES = ["unordered-list-item", "ordered-list-item", "blockquote"];
 
+const UL_WRAP = <ul className="Editor-list" />;
+const OL_WRAP = <ol className="Editor-list" />;
+const BLOCKQUOTE_WRAP = <blockquote className="Editor-blockquote" />;
+
 const createBlockPlugin = () => {
   const store = {};
 
@@ -16,11 +20,40 @@ const createBlockPlugin = () => {
     },
 
     blockRenderMap: Immutable.Map({
+      "unordered-list-item": {
+        element: "li",
+        wrapper: UL_WRAP,
+      },
+
+      "ordered-list-item": {
+        element: "li",
+        wrapper: OL_WRAP,
+      },
+
       blockquote: {
         element: "blockquote",
-        wrapper: <blockquote />,
+        wrapper: BLOCKQUOTE_WRAP,
       },
     }),
+
+    blockStyleFn: block => {
+      const blockType = block.getType();
+      switch (blockType) {
+        case "unstyled":
+          return "Editor-unstyled";
+        case "header-one":
+        case "header-two":
+        case "header-three":
+        case "header-four":
+        case "header-five":
+        case "header-six":
+          return "Editor-header";
+        case "atomic":
+          return "Editor-atomic";
+        default:
+          return null;
+      }
+    },
 
     handleReturn: () => {
       const editorState = store.getEditorState();

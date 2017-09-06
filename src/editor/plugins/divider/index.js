@@ -3,6 +3,8 @@ import { EditorState, Modifier } from "draft-js";
 import mergeUndoStack from "../../utils/mergeUndoStack";
 import insertAtomicBlock from "../../utils/insertAtomicBlock";
 
+import Divider from "./Divider";
+
 const createDividerPlugin = () => {
   const store = {};
 
@@ -23,7 +25,7 @@ const createDividerPlugin = () => {
 
       return {
         editable: false,
-        component: "hr",
+        component: Divider,
       };
     },
 
