@@ -21,6 +21,7 @@ class TopicCreator extends React.Component {
           <Editor
             editorState={this.state.editorState}
             onChange={this.handleChange}
+            placeholder="Write something here..."
           />
         </PageLayout.Main>
       </PageLayout>

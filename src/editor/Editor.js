@@ -11,6 +11,15 @@ const Container = styled.div`
   font-size: 1rem;
   line-height: 1.5;
 
+  .public-DraftEditor-content {
+    overflow: hidden;
+    min-height: 20rem;
+
+    > div {
+      margin: 1rem 0;
+    }
+  }
+
   .Editor-unstyled {
     margin: 0;
   }
@@ -101,11 +110,7 @@ class Editor extends React.Component {
     if (!this.state.mounted) return null;
     return (
       <Container>
-        <DraftEditor
-          plugins={this.plugins}
-          editorState={this.props.editorState}
-          onChange={this.props.onChange}
-        />
+        <DraftEditor {...this.props} plugins={this.plugins} />
       </Container>
     );
   }
