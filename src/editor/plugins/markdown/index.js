@@ -32,7 +32,7 @@ const createMarkdownPlugin = () => {
       if (prefix === "-" || prefix === "*") {
         convertTo = "unordered-list-item";
       }
-      if (prefix === "1.") {
+      if (/^\d+\.$/.test(prefix)) {
         convertTo = "ordered-list-item";
       }
       if (prefix === ">") {
