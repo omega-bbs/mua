@@ -5,12 +5,15 @@ const webpack = require("webpack");
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
 const BabelMinifyPlugin = require("babel-minify-webpack-plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
 const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin");
 
 const rules = require("./common/rules");
 
 module.exports = ({ friendly = false } = {}) => {
   const production = process.env.NODE_ENV === "production";
+  const stats = process.env.STATS === "true";
 
   return {
     context: path.resolve("."),
@@ -68,6 +71,12 @@ module.exports = ({ friendly = false } = {}) => {
         publicPath: "/",
         writeToFileEmit: true,
       }),
+
+      stats &&
+        new BundleAnalyzerPlugin({
+          analyzerMode: "disabled",
+          generateStatsFile: true,
+        }),
 
       friendly && new FriendlyErrorsPlugin(),
     ].filter(Boolean),
