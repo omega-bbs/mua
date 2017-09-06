@@ -19,6 +19,101 @@ const createMarkdownPlugin = () => {
       Object.assign(store, pluginFunctions);
     },
 
+    handleReturn: () => {
+      const editorState = store.getEditorState();
+      const selection = editorState.getSelection();
+
+      if (!selection.isCollapsed()) return "not-handled";
+
+      const contentState = editorState.getCurrentContent();
+      const blockKey = selection.getFocusKey();
+      const block = contentState.getBlockForKey(blockKey);
+
+      if (block.getType() !== "unstyled") return "not-handled";
+
+      const offset = selection.getFocusOffset();
+      const prefix = block.getText().slice(0, offset);
+
+      let group;
+
+      // Step #1: split block (for undo)
+      let newContentState = Modifier.splitBlock(contentState, selection);
+      let newEditorState = EditorState.push(editorState, newContentState);
+
+      // code-block
+      if ((group = /^`{3}(.*)$/.exec(prefix))) {
+        const language = group[1].trim();
+
+        // Step #2: remove prefix & join block
+        newContentState = Modifier.removeRange(
+          newContentState,
+          newContentState.getSelectionAfter().merge({
+            anchorKey: blockKey,
+            anchorOffset: 0,
+          }),
+          "backward",
+        );
+
+        // Step #3: convert block type
+        newContentState = Modifier.setBlockType(
+          newContentState,
+          newContentState.getSelectionAfter(),
+          "code-block",
+        );
+
+        // Step #4: set code block language
+        newContentState = Modifier.setBlockData(
+          newContentState,
+          newContentState.getSelectionAfter(),
+          { language },
+        );
+
+        newEditorState = EditorState.push(
+          newEditorState,
+          newContentState,
+          "change-block-type",
+        );
+        store.setEditorState(newEditorState);
+        return "handled";
+      }
+
+      // header
+      if ((group = /^(#{1,6})\s/.exec(prefix))) {
+        const level = group[1].length;
+
+        const newSelection = newContentState.getSelectionAfter();
+
+        // Step #2: remove prefix
+        newContentState = Modifier.removeRange(
+          newContentState,
+          selection.merge({ anchorOffset: 0, focusOffset: group[0].length }),
+          "backward",
+        );
+
+        // Step #3: convert block type
+        newContentState = Modifier.setBlockType(
+          newContentState,
+          selection,
+          HEADERS[level],
+        );
+
+        // Step #4: restore selection
+        newContentState = newContentState.merge({
+          selectionAfter: newSelection,
+        });
+
+        newEditorState = EditorState.push(
+          newEditorState,
+          newContentState,
+          "change-block-type",
+        );
+        store.setEditorState(newEditorState);
+        return "handled";
+      }
+
+      return "not-handled";
+    },
+
     handleBeforeInput: char => {
       if (char !== " ") return "not-handled";
 
