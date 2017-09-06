@@ -2,6 +2,15 @@ import { EditorState, Modifier } from "draft-js";
 
 import insertText from "../../utils/insertText";
 
+const HEADERS = {
+  1: "header-one",
+  2: "header-two",
+  3: "header-three",
+  4: "header-four",
+  5: "header-five",
+  6: "header-six",
+};
+
 const createMarkdownPlugin = () => {
   const store = {};
 
@@ -37,6 +46,9 @@ const createMarkdownPlugin = () => {
       }
       if (prefix === ">") {
         convertTo = "blockquote";
+      }
+      if (/^#{1,6}$/.test(prefix)) {
+        convertTo = HEADERS[prefix.length];
       }
 
       if (!convertTo) return "not-handled";

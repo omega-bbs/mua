@@ -31,17 +31,36 @@ const createBlockPlugin = () => {
       const contentState = editorState.getCurrentContent();
       const blockKey = selection.getFocusKey();
       const block = contentState.getBlockForKey(blockKey);
+      const blockType = block.getType();
 
-      if (!BLOCK_TYPES.includes(block.getType())) return "not-handled";
+      if (BLOCK_TYPES.includes(blockType)) {
+        const length = block.getLength();
+        if (length === 0) {
+          const depth = block.getDepth();
+          const newEditorState = depth
+            ? // unindent block
+              setBlockDepth(editorState, blockKey, depth - 1)
+            : // exit block
+              setBlockType(editorState, blockKey, "unstyled");
+          store.setEditorState(newEditorState);
+          return "handled";
+        }
+      }
 
-      const length = block.getLength();
-      if (length === 0) {
-        const depth = block.getDepth();
-        const newEditorState = depth
-          ? // unindent block
-            setBlockDepth(editorState, blockKey, depth - 1)
-          : // exit block
-            setBlockType(editorState, blockKey, "unstyled");
+      if (blockType.startsWith("header-")) {
+        let newContentState = Modifier.splitBlock(contentState, selection);
+        if (selection.getFocusOffset() === block.getLength()) {
+          newContentState = Modifier.setBlockType(
+            newContentState,
+            newContentState.getSelectionAfter(),
+            "unstyled",
+          );
+        }
+        const newEditorState = EditorState.push(
+          editorState,
+          newContentState,
+          "split-block",
+        );
         store.setEditorState(newEditorState);
         return "handled";
       }
