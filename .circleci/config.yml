@@ -18,6 +18,7 @@ jobs:
             - node_modules
       - store_artifacts:
           path: ./dist
+          destination: dist
   docker-hub:
     docker:
       - image: circleci/node:8.4
