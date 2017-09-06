@@ -142,9 +142,6 @@ const createMarkdownPlugin = () => {
       if (prefix === ">") {
         convertTo = "blockquote";
       }
-      if (/^#{1,6}$/.test(prefix)) {
-        convertTo = HEADERS[prefix.length];
-      }
 
       if (!convertTo) return "not-handled";
 
