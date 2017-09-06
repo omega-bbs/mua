@@ -10,6 +10,7 @@ const BLOCK_TYPES = ["unordered-list-item", "ordered-list-item", "blockquote"];
 const UL_WRAP = <ul className="Editor-list" />;
 const OL_WRAP = <ol className="Editor-list" />;
 const BLOCKQUOTE_WRAP = <blockquote className="Editor-blockquote" />;
+const CODE_BLOCK_WRAP = <pre className="Editor-code-block" />;
 
 const createBlockPlugin = () => {
   const store = {};
@@ -33,6 +34,11 @@ const createBlockPlugin = () => {
       blockquote: {
         element: "blockquote",
         wrapper: BLOCKQUOTE_WRAP,
+      },
+
+      "code-block": {
+        element: "pre",
+        wrapper: CODE_BLOCK_WRAP,
       },
     }),
 

@@ -56,6 +56,16 @@ const Container = styled.div`
     }
   }
 
+  .Editor-code-block {
+    margin: 1rem 0;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 0, 0.05);
+
+    pre {
+      margin: 0;
+    }
+  }
+
   .Editor-atomic {
     margin: 1rem 0;
   }
