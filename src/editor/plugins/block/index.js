@@ -116,6 +116,7 @@ const createBlockPlugin = () => {
 
       if (!BLOCK_TYPES.includes(block.getType())) return "not-handled";
 
+      /*
       const depth = block.getDepth();
       if (depth) {
         // unindent block
@@ -123,6 +124,7 @@ const createBlockPlugin = () => {
         store.setEditorState(newEditorState);
         return "handled";
       }
+      */
 
       const blockBefore = contentState.getBlockBefore(blockKey);
       if (!blockBefore || blockBefore.getType() === "atomic")
