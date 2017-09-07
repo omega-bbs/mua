@@ -1,3 +1,6 @@
+import { EditorState, Modifier } from "draft-js";
+
+import mergeUndoStack from "../../utils/mergeUndoStack";
 import insertText from "../../utils/insertText";
 
 const createSoftReturnPlugin = () => {
@@ -10,7 +13,33 @@ const createSoftReturnPlugin = () => {
 
     handleReturn: event => {
       if (!event.shiftKey) return "not-handled";
-      store.setEditorState(insertText(store.getEditorState(), "\n"));
+
+      const editorState = store.getEditorState();
+      const selection = editorState.getSelection();
+
+      if (selection.isCollapsed()) {
+        const newEditorState = insertText(editorState, "\n");
+        store.setEditorState(newEditorState);
+      } else {
+        const contentState = editorState.getCurrentContent();
+
+        let newContentState = Modifier.removeRange(
+          contentState,
+          selection,
+          "backward",
+        );
+        let newEditorState = EditorState.push(
+          editorState,
+          newContentState,
+          "remove-range",
+        );
+
+        newEditorState = insertText(newEditorState, "\n");
+        newEditorState = mergeUndoStack(newEditorState);
+
+        store.setEditorState(newEditorState);
+      }
+
       return "handled";
     },
   };
