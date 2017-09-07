@@ -25,7 +25,7 @@ const Container = styled.div`
   }
 
   .Editor-unstyled {
-    margin: 0.5rem 0;
+    margin: 0.75rem 0;
   }
 
   .Editor-header {
@@ -56,7 +56,7 @@ const Container = styled.div`
     }
 
     div {
-      margin: 0.5rem 0;
+      margin: 0.75rem 0;
     }
   }
 

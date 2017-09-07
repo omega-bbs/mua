@@ -11,7 +11,7 @@ const insertText = (editorState, text) => {
   const newEditorState = EditorState.push(
     editorState,
     newContentState,
-    "insert-characters",
+    "insert-fragment",
   );
   return newEditorState;
 };
