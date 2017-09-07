@@ -21,6 +21,10 @@ const createBlockPlugin = () => {
     },
 
     blockRenderMap: Immutable.Map({
+      unstyled: {
+        element: "div",
+      },
+
       "unordered-list-item": {
         element: "li",
         wrapper: UL_WRAP,
@@ -32,12 +36,12 @@ const createBlockPlugin = () => {
       },
 
       blockquote: {
-        element: "blockquote",
+        element: "div",
         wrapper: BLOCKQUOTE_WRAP,
       },
 
       "code-block": {
-        element: "pre",
+        element: "div",
         wrapper: CODE_BLOCK_WRAP,
       },
     }),

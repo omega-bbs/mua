@@ -25,7 +25,7 @@ const Container = styled.div`
   }
 
   .Editor-unstyled {
-    margin: 0;
+    margin: 0.5rem 0;
   }
 
   .Editor-header {
@@ -35,6 +35,10 @@ const Container = styled.div`
   .Editor-list {
     margin: 1rem 0;
     padding: 0;
+
+    li {
+      margin: 0.5rem 0;
+    }
   }
 
   .Editor-blockquote {
@@ -51,8 +55,8 @@ const Container = styled.div`
       border-left: 4px solid rgba(0, 0, 0, 0.1);
     }
 
-    blockquote {
-      margin: 0;
+    div {
+      margin: 0.5rem 0;
     }
   }
 
@@ -61,8 +65,8 @@ const Container = styled.div`
     padding: 0.5rem 1rem;
     background: rgba(0, 0, 0, 0.05);
 
-    pre {
-      margin: 0;
+    div {
+      display: block;
     }
   }
 
