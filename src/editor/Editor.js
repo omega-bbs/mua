@@ -64,10 +64,6 @@ const Container = styled.div`
     margin: 1rem 0;
     padding: 0.5rem 1rem;
     background: rgba(0, 0, 0, 0.05);
-
-    div {
-      display: block;
-    }
   }
 
   .Editor-atomic {

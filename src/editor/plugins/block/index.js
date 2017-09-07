@@ -10,7 +10,6 @@ const BLOCK_TYPES = ["unordered-list-item", "ordered-list-item", "blockquote"];
 const UL_WRAP = <ul className="Editor-list" />;
 const OL_WRAP = <ol className="Editor-list" />;
 const BLOCKQUOTE_WRAP = <blockquote className="Editor-blockquote" />;
-const CODE_BLOCK_WRAP = <pre className="Editor-code-block" />;
 
 const createBlockPlugin = () => {
   const store = {};
@@ -20,7 +19,7 @@ const createBlockPlugin = () => {
       Object.assign(store, pluginFunctions);
     },
 
-    blockRenderMap: Immutable.Map({
+    blockRenderMap: new Immutable.Map({
       unstyled: {
         element: "div",
         aliasedElements: ["p"],
@@ -42,8 +41,7 @@ const createBlockPlugin = () => {
       },
 
       "code-block": {
-        element: "div",
-        wrapper: CODE_BLOCK_WRAP,
+        element: "pre",
       },
     }),
 
@@ -59,6 +57,8 @@ const createBlockPlugin = () => {
         case "header-five":
         case "header-six":
           return "Editor-header";
+        case "code-block":
+          return "Editor-code-block";
         case "atomic":
           return "Editor-atomic";
         default:
