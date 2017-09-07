@@ -77,40 +77,6 @@ const createMarkdownPlugin = () => {
         return "handled";
       }
 
-      // header
-      if ((group = /^(#{1,6})\s/.exec(prefix))) {
-        const level = group[1].length;
-
-        const newSelection = newContentState.getSelectionAfter();
-
-        // Step #2: remove prefix
-        newContentState = Modifier.removeRange(
-          newContentState,
-          selection.merge({ anchorOffset: 0, focusOffset: group[0].length }),
-          "backward",
-        );
-
-        // Step #3: convert block type
-        newContentState = Modifier.setBlockType(
-          newContentState,
-          selection,
-          HEADERS[level],
-        );
-
-        // Step #4: restore selection
-        newContentState = newContentState.merge({
-          selectionAfter: newSelection,
-        });
-
-        newEditorState = EditorState.push(
-          newEditorState,
-          newContentState,
-          "change-block-type",
-        );
-        store.setEditorState(newEditorState);
-        return "handled";
-      }
-
       return "not-handled";
     },
 
@@ -141,6 +107,9 @@ const createMarkdownPlugin = () => {
       }
       if (prefix === ">") {
         convertTo = "blockquote";
+      }
+      if (/^#{1,6}$/.test(prefix)) {
+        convertTo = HEADERS[prefix.length];
       }
 
       if (!convertTo) return "not-handled";
