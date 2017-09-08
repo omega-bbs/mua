@@ -53,7 +53,10 @@ const createDividerPlugin = () => {
       // Step #2: remove prefix
       newContentState = Modifier.removeRange(
         newContentState,
-        selection.merge({ anchorOffset: 0 }),
+        newContentState.getSelectionAfter().merge({
+          anchorKey: blockKey,
+          anchorOffset: 0,
+        }),
         "backward",
       );
       newEditorState = EditorState.push(
