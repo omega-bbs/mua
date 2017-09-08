@@ -1,13 +1,14 @@
-import Immutable from "immutable";
+// import Immutable from "immutable";
 import {
   EditorState,
-  SelectionState,
-  CharacterMetadata,
+  // SelectionState,
+  // CharacterMetadata,
+  RichUtils,
   Modifier,
 } from "draft-js";
 
 import createEmptyBlock from "../../utils/internals/createEmptyBlock";
-import getSelectedBlocks from "../../utils/internals/getSelectedBlocks";
+// import getSelectedBlocks from "../../utils/internals/getSelectedBlocks";
 
 const CHANGE_TYPES = [
   "change-block-type",
@@ -49,6 +50,15 @@ const createCodeBlockPlugin = () => {
       return editorState;
     },
 
+    handleKeyCommand: command => {
+      if (command !== "code") return "not-handled";
+      store.setEditorState(
+        RichUtils.toggleBlockType(store.getEditorState(), "code-block"),
+      );
+      return "handled";
+    },
+
+    /*
     handleKeyCommand: command => {
       if (command !== "code") return "not-handled";
 
@@ -155,6 +165,7 @@ const createCodeBlockPlugin = () => {
 
       return "handled";
     },
+    */
 
     handleReturn: () => {
       const editorState = store.getEditorState();
