@@ -3,12 +3,12 @@ import {
   EditorState,
   // SelectionState,
   // CharacterMetadata,
-  RichUtils,
   Modifier,
 } from "draft-js";
 
 import createEmptyBlock from "../../utils/internals/createEmptyBlock";
 // import getSelectedBlocks from "../../utils/internals/getSelectedBlocks";
+import toggleBlockType from "../../utils/toggleBlockType";
 
 const CHANGE_TYPES = [
   "change-block-type",
@@ -53,7 +53,7 @@ const createCodeBlockPlugin = () => {
     handleKeyCommand: command => {
       if (command !== "code") return "not-handled";
       store.setEditorState(
-        RichUtils.toggleBlockType(store.getEditorState(), "code-block"),
+        toggleBlockType(store.getEditorState(), "code-block"),
       );
       return "handled";
     },
