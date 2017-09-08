@@ -22,11 +22,11 @@ const createBlockConvertPlugin = () => {
     },
 
     buttons: [
-      { text: "H", title: "标题", blockType: "header-one" },
-      { text: "-", title: "无序列表", blockType: "unordered-list-item" },
-      { text: "1.", title: "有序列表", blockType: "ordered-list-item" },
-      { text: "“", title: "引用", blockType: "blockquote" },
-      { text: "</>", title: "代码块", blockType: "code-block" },
+      { text: "H", title: "Title", blockType: "header-one" },
+      { text: "-", title: "Unordered List", blockType: "unordered-list-item" },
+      { text: "1.", title: "Ordered List", blockType: "ordered-list-item" },
+      { text: "“", title: "Quote", blockType: "blockquote" },
+      { text: "</>", title: "Code Block", blockType: "code-block" },
     ].map(button => ({
       ...button,
       isActive: editorState => {

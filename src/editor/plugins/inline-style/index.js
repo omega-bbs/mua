@@ -20,9 +20,9 @@ const createInlineStylePlugin = () => {
     },
 
     buttons: [
-      { text: "B", title: "粗体", inlineStyle: "BOLD" },
-      { text: "I", title: "斜体", inlineStyle: "ITALIC" },
-      { text: "U", title: "下划线", inlineStyle: "UNDERLINE" },
+      { text: "B", title: "Bold", inlineStyle: "BOLD" },
+      { text: "I", title: "Italic", inlineStyle: "ITALIC" },
+      { text: "U", title: "Underline", inlineStyle: "UNDERLINE" },
     ].map(button => ({
       ...button,
       isActive: editorState =>

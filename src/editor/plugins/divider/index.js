@@ -16,7 +16,7 @@ const createDividerPlugin = () => {
     buttons: [
       {
         text: "--",
-        title: "分割线",
+        title: "Divider",
         onClick: () => {
           store.setEditorState(
             insertAtomicBlock(store.getEditorState(), "divider", "IMMUTABLE"),
