@@ -20,11 +20,6 @@ const createBlockPlugin = () => {
     },
 
     blockRenderMap: new Immutable.Map({
-      unstyled: {
-        element: "div",
-        aliasedElements: ["p"],
-      },
-
       "unordered-list-item": {
         element: "li",
         wrapper: UL_WRAP,
