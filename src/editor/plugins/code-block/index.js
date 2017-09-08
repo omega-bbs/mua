@@ -1,13 +1,6 @@
-// import Immutable from "immutable";
-import {
-  EditorState,
-  // SelectionState,
-  // CharacterMetadata,
-  Modifier,
-} from "draft-js";
+import { EditorState, Modifier } from "draft-js";
 
 import createEmptyBlock from "../../utils/internals/createEmptyBlock";
-// import getSelectedBlocks from "../../utils/internals/getSelectedBlocks";
 import toggleBlockType from "../../utils/toggleBlockType";
 
 const CHANGE_TYPES = [
