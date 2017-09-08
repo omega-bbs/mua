@@ -23,6 +23,7 @@ const createBlockConvertPlugin = () => {
 
     buttons: [
       { text: "H", title: "Title", blockType: "header-one" },
+      { text: "h", title: "Subtitle", blockType: "header-two" },
       { text: "-", title: "Unordered List", blockType: "unordered-list-item" },
       { text: "1.", title: "Ordered List", blockType: "ordered-list-item" },
       { text: "“", title: "Quote", blockType: "blockquote" },
