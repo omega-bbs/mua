@@ -1,5 +1,6 @@
-import { EditorState, Modifier } from "draft-js";
+import { EditorState, SelectionState, Modifier } from "draft-js";
 
+import clearInlineStyle from "../../utils/internals/clearInlineStyle";
 import insertText from "../../utils/insertText";
 
 const HEADERS = {
@@ -67,6 +68,22 @@ const createMarkdownPlugin = () => {
           newContentState.getSelectionAfter(),
           { language },
         );
+
+        // Step #5: clear inline style inside code block
+        const newSelection = newContentState.getSelectionAfter();
+        const newBlockKey = newSelection.getFocusKey();
+        const newBlock = newContentState.getBlockForKey(newBlockKey);
+        newContentState = clearInlineStyle(
+          newContentState,
+          new SelectionState({
+            anchorKey: newBlockKey,
+            anchorOffset: 0,
+            focusKey: newBlockKey,
+            focusOffset: newBlock.getLength(),
+          }),
+        ).merge({
+          selectionAfter: newSelection,
+        });
 
         newEditorState = EditorState.push(
           newEditorState,
