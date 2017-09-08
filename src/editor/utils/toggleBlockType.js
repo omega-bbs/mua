@@ -1,3 +1,4 @@
+import Immutable from "immutable";
 import { EditorState, SelectionState, Modifier } from "draft-js";
 
 import normalizeSelectionForBlocks from "./internals/normalizeSelectionForBlocks";
@@ -45,11 +46,19 @@ const toggleBlockType = (editorState, blockType) => {
     });
   }
 
-  const newEditorState = EditorState.push(
+  let newEditorState = EditorState.push(
     editorState,
     newContentState,
     "change-block-type",
   );
+
+  if (targetType === "code-block") {
+    newEditorState = EditorState.setInlineStyleOverride(
+      newEditorState,
+      new Immutable.OrderedSet(),
+    );
+  }
+
   return newEditorState;
 };
 

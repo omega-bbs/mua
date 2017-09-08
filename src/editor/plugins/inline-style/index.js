@@ -1,5 +1,7 @@
 import { RichUtils } from "draft-js";
 
+const INLINE_STYLES = ["bold", "italic", "underline", "code"];
+
 const createInlineStylePlugin = () => {
   const store = {};
 
@@ -56,6 +58,16 @@ const createInlineStylePlugin = () => {
         );
       },
     })),
+
+    handleKeyCommand: command => {
+      if (!INLINE_STYLES.includes(command)) return "not-handled";
+
+      const editorState = store.getEditorState();
+      const blockType = getCurrentBlockType(editorState);
+
+      if (blockType === "code-block") return "handled";
+      return "not-handled";
+    },
   };
 };
 
