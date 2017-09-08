@@ -71,6 +71,10 @@ const Container = styled.div`
     margin: 1rem 0;
   }
 
+  .public-DraftStyleDefault-unorderedListItem {
+    list-style: square;
+  }
+
   .public-DraftStyleDefault-listLTR.public-DraftStyleDefault {
     &-depth0 {
       margin-left: 2rem;
