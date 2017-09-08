@@ -3,6 +3,21 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import classNames from "classnames";
 
+const getShortcutText = shortcut => {
+  const isMacOS =
+    typeof navigator !== "undefined" && /Mac/i.test(navigator.userAgent);
+  return isMacOS
+    ? shortcut
+        .replace(/\+/g, "")
+        .replace("Command", "⌘")
+        .replace("Option", "⌥")
+        .replace("Shift", "⇧")
+    : shortcut
+        .replace(/\+/g, " + ")
+        .replace("Command", "Ctrl")
+        .replace("Option", "Alt");
+};
+
 const Container = styled.div`
   display: flex;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -65,11 +80,17 @@ class Toolbar extends React.Component {
                     button.isDisabled && button.isDisabled(editorState);
                   const active =
                     button.isActive && button.isActive(editorState);
+                  const shortcut = button.shortcut
+                    ? getShortcutText(button.shortcut)
+                    : "";
+                  const title = button.title
+                    ? `${button.title}${shortcut ? ` (${shortcut})` : shortcut}`
+                    : "";
                   return (
                     <Container.Button
                       key={index}
                       className={classNames({ active })}
-                      title={button.title}
+                      title={title}
                       disabled={disabled}
                       onClick={button.onClick}
                     >

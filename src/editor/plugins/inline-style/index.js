@@ -37,9 +37,24 @@ const createInlineStylePlugin = () => {
     },
 
     buttons: [
-      { text: "B", title: "Bold", inlineStyle: "BOLD" },
-      { text: "I", title: "Italic", inlineStyle: "ITALIC" },
-      { text: "U", title: "Underline", inlineStyle: "UNDERLINE" },
+      {
+        text: "B",
+        title: "Bold",
+        inlineStyle: "BOLD",
+        shortcut: "Command+B",
+      },
+      {
+        text: "I",
+        title: "Italic",
+        inlineStyle: "ITALIC",
+        shortcut: "Command+I",
+      },
+      {
+        text: "U",
+        title: "Underline",
+        inlineStyle: "UNDERLINE",
+        shortcut: "Command+U",
+      },
     ].map(button => ({
       ...button,
       isDisabled: editorState => {
