@@ -13,6 +13,18 @@ const createDividerPlugin = () => {
       Object.assign(store, pluginFunctions);
     },
 
+    buttons: [
+      {
+        text: "--",
+        title: "分割线",
+        onClick: () => {
+          store.setEditorState(
+            insertAtomicBlock(store.getEditorState(), "divider", "IMMUTABLE"),
+          );
+        },
+      },
+    ],
+
     blockRendererFn: block => {
       if (block.getType() !== "atomic") return null;
 

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import DraftEditor from "draft-js-plugins-editor";
 import "draft-js/dist/Draft.css";
 
+import Toolbar from "./Toolbar";
 import getPlugins from "./getPlugins";
 
 const Container = styled.div`
@@ -118,13 +119,15 @@ class Editor extends React.Component {
   componentDidMount() {
     this.setState({ mounted: true });
     this.plugins = getPlugins();
+    this.reversedPlugins = this.plugins.slice(0).reverse();
   }
 
   render() {
     if (!this.state.mounted) return null;
     return (
       <Container>
-        <DraftEditor {...this.props} plugins={this.plugins} />
+        <Toolbar editorState={this.props.editorState} plugins={this.plugins} />
+        <DraftEditor {...this.props} plugins={this.reversedPlugins} />
       </Container>
     );
   }
