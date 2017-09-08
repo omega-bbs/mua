@@ -29,6 +29,9 @@ const createBlockConvertPlugin = () => {
       { text: "</>", title: "Code Block", blockType: "code-block" },
     ].map(button => ({
       ...button,
+      isDisabled: editorState => {
+        return getCurrentBlockType(editorState) === "atomic";
+      },
       isActive: editorState => {
         return getCurrentBlockType(editorState) === button.blockType;
       },

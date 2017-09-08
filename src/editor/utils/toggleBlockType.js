@@ -1,13 +1,15 @@
-import { EditorState, Modifier } from "draft-js";
+import { EditorState, SelectionState, Modifier } from "draft-js";
 
 import normalizeSelectionForBlocks from "./internals/normalizeSelectionForBlocks";
 import getSelectedBlocks from "./internals/getSelectedBlocks";
+import clearInlineStyle from "./internals/clearInlineStyle";
 
 const toggleBlockType = (editorState, blockType) => {
   const selection = editorState.getSelection();
   const contentState = editorState.getCurrentContent();
 
-  const hasAtomicBlock = getSelectedBlocks(contentState, selection).some(
+  const selectedBlocks = getSelectedBlocks(contentState, selection);
+  const hasAtomicBlock = selectedBlocks.some(
     block => block.getType() === "atomic",
   );
 
@@ -19,13 +21,29 @@ const toggleBlockType = (editorState, blockType) => {
   const block = contentState.getBlockForKey(blockKey);
   const targetType = block.getType() === blockType ? "unstyled" : blockType;
 
-  const newContentState = Modifier.setBlockType(
+  let newContentState = Modifier.setBlockType(
     contentState,
     normalizeSelectionForBlocks(selection, contentState),
     targetType,
   ).merge({
     selectionAfter: selection,
   });
+
+  if (targetType === "code-block") {
+    const startBlock = selectedBlocks.first();
+    const endBlock = selectedBlocks.last();
+    newContentState = clearInlineStyle(
+      newContentState,
+      new SelectionState({
+        anchorKey: startBlock.getKey(),
+        anchorOffset: 0,
+        focusKey: endBlock.getKey(),
+        focusOffset: endBlock.getLength(),
+      }),
+    ).merge({
+      selectionAfter: selection,
+    });
+  }
 
   const newEditorState = EditorState.push(
     editorState,

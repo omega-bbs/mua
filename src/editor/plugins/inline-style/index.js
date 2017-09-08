@@ -3,16 +3,31 @@ import { RichUtils } from "draft-js";
 const createInlineStylePlugin = () => {
   const store = {};
 
-  let prevEditorState = null;
-  let currentInlineStyle = null;
+  const getCurrentBlockType = (() => {
+    let prevEditorState = null;
+    let currentBlockType = null;
 
-  const getCurrentInlineStyle = editorState => {
-    if (editorState !== prevEditorState) {
-      prevEditorState = editorState;
-      currentInlineStyle = editorState.getCurrentInlineStyle();
-    }
-    return currentInlineStyle;
-  };
+    return editorState => {
+      if (editorState !== prevEditorState) {
+        prevEditorState = editorState;
+        currentBlockType = RichUtils.getCurrentBlockType(editorState);
+      }
+      return currentBlockType;
+    };
+  })();
+
+  const getCurrentInlineStyle = (() => {
+    let prevEditorState = null;
+    let currentInlineStyle = null;
+
+    return editorState => {
+      if (editorState !== prevEditorState) {
+        prevEditorState = editorState;
+        currentInlineStyle = editorState.getCurrentInlineStyle();
+      }
+      return currentInlineStyle;
+    };
+  })();
 
   return {
     initialize: pluginFunctions => {
@@ -25,8 +40,13 @@ const createInlineStylePlugin = () => {
       { text: "U", title: "Underline", inlineStyle: "UNDERLINE" },
     ].map(button => ({
       ...button,
-      isActive: editorState =>
-        getCurrentInlineStyle(editorState).includes(button.inlineStyle),
+      isDisabled: editorState => {
+        const blockType = getCurrentBlockType(editorState);
+        return blockType === "atomic" || blockType === "code-block";
+      },
+      isActive: editorState => {
+        return getCurrentInlineStyle(editorState).includes(button.inlineStyle);
+      },
       onClick: () => {
         store.setEditorState(
           RichUtils.toggleInlineStyle(

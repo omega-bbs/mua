@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import classNames from "classnames";
 
 const Container = styled.div`
   display: flex;
@@ -13,13 +14,25 @@ Container.Group = styled.div`
   border-left: 1px solid rgba(0, 0, 0, 0.05);
 `;
 
-Container.Button = styled.div`
+Container.Button = styled.button`
   display: block;
   width: 2.5rem;
   height: 2.5rem;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  font: inherit;
   line-height: 2.5rem;
   text-align: center;
+  color: #000;
+  background: none;
   cursor: pointer;
+
+  &:disabled {
+    color: rgba(0, 0, 0, 0.4);
+    cursor: default;
+  }
 
   &.active {
     color: #fff;
@@ -38,30 +51,35 @@ class Toolbar extends React.Component {
   };
 
   render() {
+    const editorState = this.props.editorState;
     return (
       <Container onMouseDown={this.handleMouseDown}>
         {this.props.plugins
           .map(plugin => plugin.buttons)
           .filter(Boolean)
-          .map((buttons, index) => (
-            <Container.Group key={index}>
-              {buttons.map((button, index) => (
-                <Container.Button
-                  key={index}
-                  tabIndex={0}
-                  className={
-                    button.isActive &&
-                    button.isActive(this.props.editorState) &&
-                    "active"
-                  }
-                  title={button.title}
-                  onClick={button.onClick}
-                >
-                  {button.text}
-                </Container.Button>
-              ))}
-            </Container.Group>
-          ))}
+          .map((buttons, index) => {
+            return (
+              <Container.Group key={index}>
+                {buttons.map((button, index) => {
+                  const disabled =
+                    button.isDisabled && button.isDisabled(editorState);
+                  const active =
+                    button.isActive && button.isActive(editorState);
+                  return (
+                    <Container.Button
+                      key={index}
+                      className={classNames({ active })}
+                      title={button.title}
+                      disabled={disabled}
+                      onClick={button.onClick}
+                    >
+                      {button.text}
+                    </Container.Button>
+                  );
+                })}
+              </Container.Group>
+            );
+          })}
       </Container>
     );
   }
