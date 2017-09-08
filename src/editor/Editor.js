@@ -29,8 +29,17 @@ const Container = styled.div`
     margin: 0.75rem 0;
   }
 
-  .Editor-header {
+  .Editor-title {
     margin: 1rem 0;
+    font-weight: 400;
+  }
+
+  h1.Editor-title {
+    font-size: 2rem;
+  }
+
+  h2.Editor-title {
+    font-size: 1.5rem;
   }
 
   .Editor-list {

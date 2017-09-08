@@ -51,7 +51,7 @@ const createBlockPlugin = () => {
         case "header-four":
         case "header-five":
         case "header-six":
-          return "Editor-header";
+          return "Editor-title";
         case "code-block":
           return "Editor-code-block";
         case "atomic":
