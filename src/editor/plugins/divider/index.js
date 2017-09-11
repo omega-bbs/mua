@@ -41,6 +41,7 @@ const createDividerPlugin = () => {
       };
     },
 
+    // Convert "---" / "***" to a divider
     handleReturn: () => {
       const editorState = store.getEditorState();
       const selection = editorState.getSelection();

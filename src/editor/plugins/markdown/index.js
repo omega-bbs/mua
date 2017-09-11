@@ -21,6 +21,8 @@ const createMarkdownPlugin = () => {
       Object.assign(store, pluginFunctions);
     },
 
+    // Convert on ENTER pressed:
+    // - "```" to code block
     handleReturn: () => {
       const editorState = store.getEditorState();
       const selection = editorState.getSelection();
@@ -102,6 +104,10 @@ const createMarkdownPlugin = () => {
       return "not-handled";
     },
 
+    // Convert on SPACE pressed:
+    // - "-" / "*" to unordered list
+    // - "1." to ordered list
+    // - "#" / "##" to header-onw (title) / header-two (subtitle)
     handleBeforeInput: char => {
       if (char !== " ") return "not-handled";
 

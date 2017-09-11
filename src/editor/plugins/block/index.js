@@ -61,6 +61,10 @@ const createBlockPlugin = () => {
       }
     },
 
+    // Handle ENTER inside header / list / blockquote
+    // 1. header & cursor at block end -> exit header
+    // 2. list & current block is empty -> unindent list item / exit list
+    // 3. blockquote & current block is empty -> exit blockquote
     handleReturn: () => {
       const editorState = store.getEditorState();
       const selection = editorState.getSelection();
@@ -107,6 +111,13 @@ const createBlockPlugin = () => {
       return "not-handled";
     },
 
+    // Handle BACKSPACE inside list / block quote -> join blocks
+    // Example:
+    //   - foo
+    //   - | <- cursor
+    // Action: BACKSPACE
+    // Result:
+    //   - foo| <- cursor
     handleKeyCommand: command => {
       if (command !== "backspace") return "not-handled";
 

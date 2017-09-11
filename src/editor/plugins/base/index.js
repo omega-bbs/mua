@@ -8,6 +8,7 @@ const createBasePlugin = () => {
       Object.assign(store, pluginFunctions);
     },
 
+    // Handle base command
     handleKeyCommand: command => {
       const editorState = store.getEditorState();
       const newEditorState = RichUtils.handleKeyCommand(editorState, command);
@@ -18,6 +19,7 @@ const createBasePlugin = () => {
       return "not-handled";
     },
 
+    // Indent / unindent list item on TAB / Shift + TAB
     onTab: event => {
       event.preventDefault();
       store.setEditorState(RichUtils.onTab(event, store.getEditorState(), 4));

@@ -20,6 +20,8 @@ const createCodeBlockPlugin = () => {
       Object.assign(store, pluginFunctions);
     },
 
+    // Ensure the last block is not a code block (insert a new block after last block when needed)
+    // TODO: Crate navigate plugin for both code block & atomic block
     onChange: editorState => {
       const contentState = editorState.getCurrentContent();
       if (contentState !== prevContentState) {
@@ -160,6 +162,7 @@ const createCodeBlockPlugin = () => {
     },
     */
 
+    // Using soft line break inside code block
     handleReturn: () => {
       const editorState = store.getEditorState();
       const selection = editorState.getSelection();

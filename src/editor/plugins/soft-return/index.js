@@ -11,6 +11,7 @@ const createSoftReturnPlugin = () => {
       Object.assign(store, pluginFunctions);
     },
 
+    // Shift + ENTER -> soft line break
     handleReturn: event => {
       if (!event.shiftKey) return "not-handled";
 

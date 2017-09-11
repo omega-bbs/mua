@@ -30,6 +30,7 @@ const toggleBlockType = (editorState, blockType) => {
     selectionAfter: selection,
   });
 
+  // TODO: move to code block plugin
   if (targetType === "code-block") {
     const startBlock = selectedBlocks.first();
     const endBlock = selectedBlocks.last();
