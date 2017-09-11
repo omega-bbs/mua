@@ -162,7 +162,7 @@ const createCodeBlockPlugin = () => {
     },
     */
 
-    // Using soft line break inside code block
+    // Using soft line-break inside code block
     handleReturn: () => {
       const editorState = store.getEditorState();
       const selection = editorState.getSelection();
