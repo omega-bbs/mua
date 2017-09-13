@@ -24,7 +24,7 @@ const createSoftReturnPlugin = () => {
       } else {
         const contentState = editorState.getCurrentContent();
 
-        let newContentState = Modifier.removeRange(
+        const newContentState = Modifier.removeRange(
           contentState,
           selection,
           "backward",

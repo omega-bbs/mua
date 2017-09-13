@@ -13,6 +13,14 @@
     "plugin:react/recommended"
   ],
   "rules": {
+    "no-var": "error",
+    "prefer-const": "error",
+    "eqeqeq": "error",
+    "object-shorthand": "error",
+    "no-useless-return": "error",
+    "consistent-return": "error",
+    "import/extensions": "error",
+    "import/no-duplicates": "error",
     "prettier/prettier": [
       "error",
       {
