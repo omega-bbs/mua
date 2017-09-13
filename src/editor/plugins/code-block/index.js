@@ -1,7 +1,8 @@
-import { EditorState, Modifier } from "draft-js";
+import { EditorState, RichUtils, Modifier } from "draft-js";
 
 import createEmptyBlock from "../../utils/internals/createEmptyBlock";
 import toggleBlockType from "../../utils/toggleBlockType";
+import insertText from "../../utils/insertText";
 
 const CHANGE_TYPES = [
   "change-block-type",
@@ -188,6 +189,17 @@ const createCodeBlockPlugin = () => {
         newContentState,
         "insert-fragment",
       );
+      store.setEditorState(newEditorState);
+      return "handled";
+    },
+
+    handlePastedText: text => {
+      const editorState = store.getEditorState();
+      const blockType = RichUtils.getCurrentBlockType(editorState);
+
+      if (blockType !== "code-block") return "not-handled";
+
+      const newEditorState = insertText(editorState, text);
       store.setEditorState(newEditorState);
       return "handled";
     },

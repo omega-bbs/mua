@@ -5,16 +5,18 @@ import toggleBlockType from "../../utils/toggleBlockType";
 const createBlockConvertPlugin = () => {
   const store = {};
 
-  let prevEditorState = null;
-  let currentBlockType = null;
+  const getCurrentBlockType = (() => {
+    let prevEditorState = null;
+    let currentBlockType = null;
 
-  const getCurrentBlockType = editorState => {
-    if (editorState !== prevEditorState) {
-      prevEditorState = editorState;
-      currentBlockType = RichUtils.getCurrentBlockType(editorState);
-    }
-    return currentBlockType;
-  };
+    return editorState => {
+      if (editorState !== prevEditorState) {
+        prevEditorState = editorState;
+        currentBlockType = RichUtils.getCurrentBlockType(editorState);
+      }
+      return currentBlockType;
+    };
+  })();
 
   return {
     initialize: pluginFunctions => {
