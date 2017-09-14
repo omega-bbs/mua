@@ -22,6 +22,7 @@ find(config, "client").entry.app = [
   "webpack-hot-middleware/client",
   ...find(config, "client").entry.app,
 ];
+find(config, "client").plugins.push(new webpack.NoEmitOnErrorsPlugin());
 find(config, "client").plugins.push(new webpack.HotModuleReplacementPlugin());
 find(config, "client").plugins.push(new FriendlyErrorsPlugin());
 
