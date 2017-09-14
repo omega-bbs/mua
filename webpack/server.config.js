@@ -5,11 +5,11 @@ const webpack = require("webpack");
 const nodeExternals = require("webpack-node-externals");
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
 const BabelMinifyPlugin = require("babel-minify-webpack-plugin");
-const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin");
+const StatsPlugin = require("stats-webpack-plugin");
 
 const rules = require("./common/rules");
 
-module.exports = ({ friendly = false } = {}) => {
+module.exports = ({ stats = true } = {}) => {
   const production = process.env.NODE_ENV === "production";
 
   return {
@@ -22,6 +22,8 @@ module.exports = ({ friendly = false } = {}) => {
     output: {
       path: path.resolve("./dist/server"),
       filename: "[name].js",
+      libraryTarget: "commonjs2",
+      libraryExport: "default",
     },
 
     target: "node",
@@ -55,7 +57,7 @@ module.exports = ({ friendly = false } = {}) => {
 
       production && new BabelMinifyPlugin(),
 
-      friendly && new FriendlyErrorsPlugin(),
+      stats && new StatsPlugin("stats.json"),
     ].filter(Boolean),
   };
 };

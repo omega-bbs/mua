@@ -4,16 +4,12 @@ const path = require("path");
 const webpack = require("webpack");
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
 const BabelMinifyPlugin = require("babel-minify-webpack-plugin");
-const ManifestPlugin = require("webpack-manifest-plugin");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
-  .BundleAnalyzerPlugin;
-const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin");
+const StatsPlugin = require("stats-webpack-plugin");
 
 const rules = require("./common/rules");
 
-module.exports = ({ friendly = false } = {}) => {
+module.exports = ({ stats = true } = {}) => {
   const production = process.env.NODE_ENV === "production";
-  const stats = process.env.STATS === "true";
 
   return {
     context: path.resolve("."),
@@ -66,19 +62,7 @@ module.exports = ({ friendly = false } = {}) => {
 
       production && new BabelMinifyPlugin(),
 
-      new ManifestPlugin({
-        fileName: "manifest.json",
-        publicPath: "/",
-        writeToFileEmit: true,
-      }),
-
-      stats &&
-        new BundleAnalyzerPlugin({
-          analyzerMode: "disabled",
-          generateStatsFile: true,
-        }),
-
-      friendly && new FriendlyErrorsPlugin(),
+      stats && new StatsPlugin("stats.json"),
     ].filter(Boolean),
   };
 };

@@ -16,8 +16,6 @@ Front-end for ω bbs.
 
 ``` shell
 # PORT=8080
-# CLIENT_PORT=8081
-# SERVER_PORT=8082
 # API_PORT=8000
 
 $ npm run dev # 127.0.0.1:8080
@@ -39,8 +37,8 @@ $ npm run jest
 ## Docker
 
 ```shell
-# SERVER_PORT=8082
+# PORT=8080
 
 $ npm run docker:build
-$ npm run docker:start # 127.0.0.1:8082
+$ npm run docker:start # 127.0.0.1:8080
 ```
