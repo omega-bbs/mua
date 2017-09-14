@@ -10,7 +10,6 @@ Front-end for ω bbs.
 
 - [Node.js](https://nodejs.org/) 8.x
 - [npm](https://www.npmjs.com/) 5
-- [Caddy](https://caddyserver.com/)
 
 ## Development
 
