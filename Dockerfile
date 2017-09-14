@@ -18,5 +18,5 @@ COPY --from=build /app/package.json /app/package.json
 COPY --from=build /app/node_modules /app/node_modules
 COPY --from=build /app/dist /app/dist
 
-ENTRYPOINT NODE_ENV=production SERVER_PORT=80 npm start
+ENTRYPOINT NODE_ENV=production PORT=80 npm start
 EXPOSE 80

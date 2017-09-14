@@ -3,14 +3,19 @@ import PropTypes from "prop-types";
 
 class HTML extends React.Component {
   static propTypes = {
-    manifest: PropTypes.object.isRequired,
+    options: PropTypes.object.isRequired,
     helmet: PropTypes.object.isRequired,
     sheet: PropTypes.object.isRequired,
     content: PropTypes.string.isRequired,
   };
 
   render() {
-    const { manifest, helmet, sheet, content } = this.props;
+    const { options, helmet, sheet, content } = this.props;
+
+    const scripts = options.clientStats.assetsByChunkName.app
+      .filter(file => file.endsWith(".js"))
+      .map(file => options.clientStats.publicPath + file);
+
     return (
       <html {...helmet.htmlAttributes.toComponent()}>
         <head>
@@ -22,7 +27,9 @@ class HTML extends React.Component {
           />
           */}
 
-          <link rel="preload" as="script" href={manifest["app.js"]} />
+          {scripts.map(file => (
+            <link key={file} rel="preload" as="script" href={file} />
+          ))}
 
           {helmet.meta.toComponent()}
           {helmet.title.toComponent()}
@@ -33,7 +40,8 @@ class HTML extends React.Component {
 
         <body {...helmet.bodyAttributes.toComponent()}>
           <div id="app" dangerouslySetInnerHTML={{ __html: content }} />
-          <script src={manifest["app.js"]} />
+
+          {scripts.map(file => <script key={file} src={file} />)}
         </body>
       </html>
     );
