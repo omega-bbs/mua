@@ -16,6 +16,7 @@ WORKDIR /app
 
 COPY --from=build /app/package.json /app/package.json
 COPY --from=build /app/node_modules /app/node_modules
+COPY --from=build /app/scripts/start.js /app/scripts/start.js
 COPY --from=build /app/dist /app/dist
 
 ENTRYPOINT NODE_ENV=production PORT=80 npm start
