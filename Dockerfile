@@ -1,4 +1,4 @@
-FROM node:8.4 as build
+FROM node:8.5 as build
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ RUN \
   rm -rf ./node_modules && \
   NODE_ENV=production npm install
 
-FROM node:8.4
+FROM node:8.5
 
 WORKDIR /app
 
