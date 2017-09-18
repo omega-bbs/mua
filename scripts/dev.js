@@ -1,6 +1,6 @@
 /* eslint-disable import/unambiguous */
 
-const yargs = require("yargs");
+const minimist = require("minimist");
 const open = require("opn");
 const express = require("express");
 const proxy = require("http-proxy-middleware");
@@ -12,9 +12,9 @@ const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin");
 
 const multi = require("../webpack/multi.config");
 
-const argv = yargs.argv;
-const PORT = Number(argv.port);
-const API_PORT = Number(argv.apiPort);
+const argv = minimist(process.argv.slice(2));
+const PORT = Number(argv["port"]);
+const API_PORT = Number(argv["api-port"]);
 
 const find = (list, name) => list.find(item => item.name === name);
 

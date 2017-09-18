@@ -1,12 +1,12 @@
 /* eslint-disable import/unambiguous */
 
-const yargs = require("yargs");
+const minimist = require("minimist");
 const express = require("express");
 
 const server = require("../dist/server/app");
 
-const argv = yargs.argv;
-const PORT = Number(argv.port);
+const argv = minimist(process.argv.slice(2));
+const PORT = Number(argv["port"]);
 
 const options = {
   clientStats: require("../dist/client/stats.json"),
