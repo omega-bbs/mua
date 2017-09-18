@@ -1,6 +1,7 @@
 /* eslint-disable import/unambiguous */
 
 const yargs = require("yargs");
+const open = require("opn");
 const express = require("express");
 const proxy = require("http-proxy-middleware");
 const webpack = require("webpack");
@@ -44,3 +45,5 @@ app.use(webpackHotMiddleware(find(compiler.compilers, "client")));
 app.use(webpackHotServerMiddleware(compiler, { chunkName: "app" }));
 
 app.listen(PORT);
+
+open(`http://127.0.0.1:${PORT}/`);
