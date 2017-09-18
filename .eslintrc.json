@@ -21,11 +21,6 @@
     "consistent-return": "error",
     "import/extensions": "error",
     "import/no-duplicates": "error",
-    "prettier/prettier": [
-      "error",
-      {
-        "trailingComma": "all"
-      }
-    ]
+    "prettier/prettier": "error"
   }
 }
