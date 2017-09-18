@@ -14,7 +14,7 @@ const Container = styled.div`
 const Logo = styled(Icon)`
   position: absolute;
   z-index: -1;
-  left: 70vw;
+  left: 50vw;
   top: 50vh;
   width: 400vw;
   height: 400vw;
@@ -23,7 +23,7 @@ const Logo = styled(Icon)`
 
 const Header = styled.header`
   position: absolute;
-  right: 40vw;
+  right: 60vw;
   top: 50vh;
   text-align: center;
   color: #fff;
@@ -46,7 +46,7 @@ const Slogan = styled.h2`
 
 const Footer = styled.footer`
   position: absolute;
-  left: 80vw;
+  left: 60vw;
   top: 50vh;
   text-align: center;
   color: #fff;
