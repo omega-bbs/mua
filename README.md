@@ -19,6 +19,13 @@ $ git config diff.nodiff.command /usr/bin/true # recommended
 $ npm install
 ```
 
+### Editor Integrations (recommended)
+
+- [EditorConfig](http://editorconfig.org/#download)
+- [ESLint](https://eslint.org/docs/user-guide/integrations)
+- [Prettier](https://prettier.io/docs/en/editors.html)
+- [styled-components](https://github.com/styled-components/styled-components#syntax-highlighting)
+
 ## Development
 
 ``` shell
