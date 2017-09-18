@@ -12,7 +12,8 @@ const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin");
 
 const multi = require("../webpack/multi.config");
 
-const argv = minimist(process.argv.slice(2));
+const argv = minimist(process.argv.slice(2), { default: { open: true } });
+const OPEN = argv["open"];
 const PORT = Number(argv["port"]);
 const API_PORT = Number(argv["api-port"]);
 
@@ -46,4 +47,6 @@ app.use(webpackHotServerMiddleware(compiler, { chunkName: "app" }));
 
 app.listen(PORT);
 
-open(`http://127.0.0.1:${PORT}/`);
+if (OPEN) {
+  open(`http://127.0.0.1:${PORT}/`);
+}
