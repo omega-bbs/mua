@@ -20,20 +20,20 @@ Front-end for ω bbs.
 $ npm run dev # 127.0.0.1:8080
 ```
 
-## Lint / Format
+### Lint / Format
 
 ``` shell
 $ npm run lint
 $ npm run prettier
 ```
 
-## Test
+### Test
 
 ``` shell
 $ npm run jest
 ```
 
-## Docker
+### Docker
 
 ```shell
 # PORT=8080
@@ -41,3 +41,14 @@ $ npm run jest
 $ npm run docker:build
 $ npm run docker:start # 127.0.0.1:8080
 ```
+
+### Analyze
+
+``` shell
+$ NODE_ENV=production npm run build
+$ npm run analyze
+```
+
+## License
+
+[GNU Affero General Public License Version 3](https://www.gnu.org/licenses/agpl-3.0.en.html) (AGPL 3.0)
