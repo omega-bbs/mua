@@ -1,8 +1,14 @@
 import React from "react";
 import { renderToString, renderToStaticMarkup } from "react-dom/server";
+import { ServerStyleSheet, StyleSheetManager } from "styled-components";
+import {
+  ApolloProvider,
+  ApolloClient,
+  createNetworkInterface,
+  // getDataFromTree,
+} from "react-apollo";
 import { StaticRouter } from "react-router-dom";
 import Helmet from "react-helmet";
-import { ServerStyleSheet, StyleSheetManager } from "styled-components";
 import { useStrict } from "mobx";
 import { useStaticRendering } from "mobx-react";
 
@@ -18,13 +24,30 @@ export default options => (req, res) => {
   const router = {};
   const sheet = new ServerStyleSheet();
 
-  const content = renderToString(
-    <StaticRouter location={req.url} context={router}>
-      <StyleSheetManager sheet={sheet.instance}>
-        <App context={{ hostname: req.hostname }} />
-      </StyleSheetManager>
-    </StaticRouter>,
+  const client = new ApolloClient({
+    ssrMode: true,
+    networkInterface: createNetworkInterface({
+      uri: "http://127.0.0.1:8000/graphql",
+      opts: {
+        headers: {
+          Cookie: req.header("Cookie"),
+        },
+      },
+    }),
+  });
+
+  const element = (
+    <StyleSheetManager sheet={sheet.instance}>
+      <ApolloProvider client={client}>
+        <StaticRouter location={req.url} context={router}>
+          <App context={{ hostname: req.hostname }} />
+        </StaticRouter>
+      </ApolloProvider>
+    </StyleSheetManager>
   );
+
+  // getDataFromTree(element).then(() => {
+  const content = renderToString(element);
 
   const helmet = Helmet.renderStatic();
 
@@ -45,4 +68,5 @@ export default options => (req, res) => {
     );
 
   res.send(html);
+  // });
 };

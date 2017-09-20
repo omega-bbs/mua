@@ -29,20 +29,25 @@ const Header = styled.div`
   height: 5rem;
 `;
 
-Header.Left = styled.div`
+Header.Main = styled.div`
   display: flex;
+  flex: 1;
+  overflow: hidden;
   align-items: center;
 `;
 
-Header.Right = styled.div`
+Header.Sidebar = styled.div`
   display: flex;
   align-items: center;
 `;
 
 Header.Title = styled.h1`
+  overflow: hidden;
   margin: 0;
   font-size: 2rem;
   font-weight: 400;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 Header.Sort = styled(Select)`
@@ -57,15 +62,15 @@ class Home extends React.Component {
         <PageLayout>
           <PageLayout.Main>
             <Header>
-              <Header.Left>
+              <Header.Main>
                 <Header.Title>Board</Header.Title>
-              </Header.Left>
-              <Header.Right>
+              </Header.Main>
+              <Header.Sidebar>
                 <Header.Sort>
                   <Select.Option name="Latest" value="latest" />
                   <Select.Option name="Newest" value="newest" />
                 </Header.Sort>
-              </Header.Right>
+              </Header.Sidebar>
             </Header>
           </PageLayout.Main>
           <PageLayout.Sidebar>
@@ -85,7 +90,7 @@ class Home extends React.Component {
           </PageLayout.Main>
           <PageLayout.Sidebar>
             <BoardList
-              list={[
+              data={[
                 { id: 0, slug: "game", name: "Game" },
                 { id: 1, slug: "tech", name: "Tech" },
               ]}

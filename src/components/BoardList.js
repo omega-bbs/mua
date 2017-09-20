@@ -13,11 +13,11 @@ Container.Divider = styled.div`
 
 class BoardList extends React.Component {
   static propTypes = {
-    list: PropTypes.arrayOf(PropTypes.object).isRequired,
+    data: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
 
   render() {
-    const list = this.props.list;
+    const list = this.props.data;
     return (
       <Container>
         <BoardItem data={{ id: null, slug: null, name: "All" }} />

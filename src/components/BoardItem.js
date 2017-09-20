@@ -24,7 +24,13 @@ Container.Indicator = styled.div`
   background-color: #e0e0e0;
 `;
 
-Container.Text = styled.div`font-size: ${15 / 16}rem;`;
+Container.Text = styled.div`
+  flex: 1;
+  overflow: hidden;
+  font-size: ${15 / 16}rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`;
 
 class BoardItem extends React.Component {
   static propTypes = {

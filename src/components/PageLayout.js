@@ -15,6 +15,7 @@ Container.Layout = styled.div`
 
 Container.Main = styled.main`
   flex: 1;
+  overflow: hidden;
   margin: 0 1rem;
 `;
 
