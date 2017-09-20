@@ -27,6 +27,7 @@ export default options => (req, res) => {
   const client = new ApolloClient({
     ssrMode: true,
     networkInterface: createNetworkInterface({
+      // TODO: use env
       uri: "http://127.0.0.1:8000/graphql",
       opts: {
         headers: {
@@ -46,6 +47,7 @@ export default options => (req, res) => {
     </StyleSheetManager>
   );
 
+  // TODO: add server fetch
   // getDataFromTree(element).then(() => {
   const content = renderToString(element);
 
