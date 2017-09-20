@@ -47,7 +47,7 @@ export default options => (req, res) => {
     </StyleSheetManager>
   );
 
-  // TODO: add server fetch
+  // TODO: fetch on server
   // getDataFromTree(element).then(() => {
   const content = renderToString(element);
 
