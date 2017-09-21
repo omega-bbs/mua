@@ -5,6 +5,7 @@ module.exports = {
   presets: [["env", { modules: false }], "stage-0", "react"],
   plugins: [
     ["transform-runtime", { polyfill: false, useBuiltIns: true }],
+    "lodash",
     ["styled-components", { ssr: true, displayName: !production }],
     production && "graphql-tag",
     "react-hot-loader/babel",
