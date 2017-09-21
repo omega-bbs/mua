@@ -1,6 +1,6 @@
-import Immutable from "immutable";
 import { EditorState, SelectionState, Modifier } from "draft-js";
 
+import { EMPTY_INLINE_STYLE } from "../../constants";
 import clearInlineStyle from "../../utils/internals/clearInlineStyle";
 import insertText from "../../utils/insertText";
 
@@ -95,7 +95,7 @@ const createMarkdownPlugin = () => {
         );
         newEditorState = EditorState.setInlineStyleOverride(
           newEditorState,
-          new Immutable.OrderedSet(),
+          EMPTY_INLINE_STYLE,
         );
         store.setEditorState(newEditorState);
         return "handled";

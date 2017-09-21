@@ -1,6 +1,6 @@
-import Immutable from "immutable";
 import { EditorState, SelectionState, Modifier } from "draft-js";
 
+import { EMPTY_INLINE_STYLE } from "../constants";
 import normalizeSelectionForBlocks from "./internals/normalizeSelectionForBlocks";
 import getSelectedBlocks from "./internals/getSelectedBlocks";
 import clearInlineStyle from "./internals/clearInlineStyle";
@@ -56,7 +56,7 @@ const toggleBlockType = (editorState, blockType) => {
   if (targetType === "code-block") {
     newEditorState = EditorState.setInlineStyleOverride(
       newEditorState,
-      new Immutable.OrderedSet(),
+      EMPTY_INLINE_STYLE,
     );
   }
 
