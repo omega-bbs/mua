@@ -1,17 +1,12 @@
 /* eslint-disable import/unambiguous */
 
 const path = require("path");
-const webpack = require("webpack");
 const nodeExternals = require("webpack-node-externals");
-const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
-const BabelMinifyPlugin = require("babel-minify-webpack-plugin");
-const StatsPlugin = require("stats-webpack-plugin");
 
 const rules = require("./common/rules");
+const plugins = require("./common/plugins");
 
-module.exports = ({ stats = true } = {}) => {
-  const production = process.env.NODE_ENV === "production";
-
+module.exports = options => {
   return {
     context: path.resolve("."),
 
@@ -37,29 +32,9 @@ module.exports = ({ stats = true } = {}) => {
     ],
 
     module: {
-      rules: rules("server"),
+      rules: rules("server", options),
     },
 
-    plugins: [
-      new webpack.LoaderOptionsPlugin({
-        minimize: production,
-      }),
-
-      new webpack.EnvironmentPlugin({
-        NODE_ENV: production ? "production" : "development",
-      }),
-
-      new CaseSensitivePathsPlugin(),
-
-      production
-        ? new webpack.HashedModuleIdsPlugin()
-        : new webpack.NamedModulesPlugin(),
-
-      production && new webpack.optimize.ModuleConcatenationPlugin(),
-
-      production && new BabelMinifyPlugin(),
-
-      stats && new StatsPlugin("stats.json"),
-    ].filter(Boolean),
+    plugins: plugins("server", options),
   };
 };
