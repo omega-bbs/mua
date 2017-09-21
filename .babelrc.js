@@ -7,6 +7,7 @@ module.exports = {
     test && "transform-es2015-modules-commonjs",
     ["transform-runtime", { polyfill: false, useBuiltIns: true }],
     ["styled-components", { ssr: true, displayName: !production }],
+    production && "graphql-tag",
     "react-hot-loader/babel",
   ].filter(Boolean),
 };
