@@ -38,6 +38,7 @@ module.exports = ({ stats = true } = {}) => {
       alias: {
         react: path.resolve("./node_modules/react"),
         "react-dom": path.resolve("./node_modules/react-dom"),
+        "prop-types": path.resolve("./node_modules/prop-types"),
       },
     },
 
