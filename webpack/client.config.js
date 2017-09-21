@@ -57,7 +57,9 @@ module.exports = ({ stats = true } = {}) => {
 
       new CaseSensitivePathsPlugin(),
 
-      !production && new webpack.NamedModulesPlugin(),
+      production
+        ? new webpack.HashedModuleIdsPlugin()
+        : new webpack.NamedModulesPlugin(),
 
       production && new webpack.optimize.ModuleConcatenationPlugin(),
 
