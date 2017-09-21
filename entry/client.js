@@ -16,6 +16,7 @@ useStrict(true);
 const client = new ApolloClient({
   networkInterface: createNetworkInterface({
     uri: "/api/graphql",
+    opts: { credentials: "include" },
   }),
 });
 
