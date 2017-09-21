@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { hoistStatics } from "recompose";
 
 const uncontrollable = Component => {
   class UncontrollableComponent extends React.Component {
@@ -49,4 +50,4 @@ const uncontrollable = Component => {
   return UncontrollableComponent;
 };
 
-export default uncontrollable;
+export default hoistStatics(uncontrollable);
