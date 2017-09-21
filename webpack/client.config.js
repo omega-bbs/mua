@@ -1,6 +1,7 @@
 /* eslint-disable import/unambiguous */
 
 const path = require("path");
+const webpack = require("webpack");
 
 const rules = require("./common/rules");
 const plugins = require("./common/plugins");
@@ -43,6 +44,18 @@ module.exports = options => {
       rules: rules("client", options),
     },
 
-    plugins: plugins("client", options),
+    plugins: [
+      production &&
+        new webpack.optimize.CommonsChunkPlugin({
+          name: "vendor",
+          minChunks: module =>
+            module.context &&
+            module.context.includes("node_modules") &&
+            module.resource &&
+            module.resource.endsWith(".js"),
+        }),
+
+      ...plugins("client", options),
+    ].filter(Boolean),
   };
 };
