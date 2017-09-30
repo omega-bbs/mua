@@ -26,7 +26,7 @@ const render = (hydrate = false) => {
     <AppContainer>
       <ApolloProvider client={client}>
         <BrowserRouter>
-          <App context={{ hostname: location.hostname }} />
+          <App context={{}} />
         </BrowserRouter>
       </ApolloProvider>
     </AppContainer>

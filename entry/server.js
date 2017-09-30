@@ -41,7 +41,7 @@ export default options => (req, res) => {
     <StyleSheetManager sheet={sheet.instance}>
       <ApolloProvider client={client}>
         <StaticRouter location={req.url} context={router}>
-          <App context={{ hostname: req.hostname }} />
+          <App context={{}} />
         </StaticRouter>
       </ApolloProvider>
     </StyleSheetManager>
