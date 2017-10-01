@@ -31,7 +31,7 @@ class App extends React.Component {
     return [
       <Helmet key="helmet" defaultTitle="ω bbs" titleTemplate="%s - ω bbs" />,
       <FocusEffect key="focus" />,
-      this.isPreview() && <AppHeader key="header" />,
+      <AppHeader key="header" />,
       <div key="root">
         <Switch key={true}>
           <Route exact path="/" component={Home} />
