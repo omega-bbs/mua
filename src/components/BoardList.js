@@ -4,7 +4,9 @@ import styled from "styled-components";
 
 import BoardItem from "./BoardItem";
 
-const Container = styled.div`padding: 0.5rem 0;`;
+const Container = styled.div`
+  padding: 0.5rem 0;
+`;
 
 Container.Divider = styled.div`
   margin: 0.5rem 0;

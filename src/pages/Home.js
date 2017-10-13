@@ -8,7 +8,9 @@ import PageLayout from "../components/PageLayout";
 import BoardList from "../components/BoardList";
 import TopicList from "../components/TopicList";
 
-const Divider = styled.div`border-top: 1px solid rgba(0, 0, 0, 0.1);`;
+const Divider = styled.div`
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+`;
 
 const CreateTopic = styled(NavLink)`
   display: block;

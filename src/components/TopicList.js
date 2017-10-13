@@ -6,7 +6,9 @@ import TopicItem from "./TopicItem";
 
 const Container = styled.div``;
 
-Container.Item = styled.div`border-bottom: 1px solid rgba(0, 0, 0, 0.05);`;
+Container.Item = styled.div`
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+`;
 
 class TopicList extends React.Component {
   static propTypes = {

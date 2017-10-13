@@ -15,7 +15,9 @@ Container.Title = styled.div`
   line-height: 2rem;
 `;
 
-Container.Meta = styled.div`display: flex;`;
+Container.Meta = styled.div`
+  display: flex;
+`;
 
 Container.MetaItem = styled.div`
   display: flex;
@@ -23,7 +25,9 @@ Container.MetaItem = styled.div`
   margin-left: 2rem;
 `;
 
-Container.MetaIcon = styled(Icon)`fill: rgba(0, 0, 0, 0.6);`;
+Container.MetaIcon = styled(Icon)`
+  fill: rgba(0, 0, 0, 0.6);
+`;
 
 Container.MetaText = styled.div`
   font-size: ${13 / 16}rem;
