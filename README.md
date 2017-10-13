@@ -39,7 +39,7 @@ $ npm run dev # 127.0.0.1:8080
 
 ``` shell
 $ npm run lint
-$ npm run prettier
+$ npm run format
 ```
 
 ### Test

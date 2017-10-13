@@ -15,7 +15,7 @@
     "jest": "jest --coverage --setupTestFrameworkScriptFile ./jest.js",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "lint": "eslint .",
-    "prettier": "eslint --fix .",
+    "format": "eslint --fix .",
     "precommit": "lint-staged"
   },
   "lint-staged": {
