@@ -20,7 +20,7 @@ const client = new ApolloClient({
   }),
 });
 
-const render = (hydrate = false) => {
+const render = () => {
   const container = document.querySelector("#app");
   const element = (
     <AppContainer>
@@ -31,14 +31,10 @@ const render = (hydrate = false) => {
       </ApolloProvider>
     </AppContainer>
   );
-  if (hydrate) {
-    ReactDOM.hydrate(element, container);
-  } else {
-    ReactDOM.render(element, container);
-  }
+  ReactDOM.hydrate(element, container);
 };
 
-render(true);
+render();
 
 if (module.hot) {
   module.hot.accept(() => {
