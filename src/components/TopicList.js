@@ -12,13 +12,14 @@ Container.Item = styled.div`
 
 class TopicList extends React.Component {
   static propTypes = {
-    list: PropTypes.arrayOf(PropTypes.object).isRequired,
+    data: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
 
   render() {
+    const list = this.props.data;
     return (
       <Container>
-        {this.props.list.map(item => (
+        {list.map(item => (
           <Container.Item key={item.id}>
             <TopicItem data={item} />
           </Container.Item>

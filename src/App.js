@@ -33,7 +33,7 @@ class App extends React.Component {
       <FocusEffect key="focus" />,
       <AppHeader key="header" />,
       <div key="root">
-        <Switch key={true}>
+        <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/board/:board" component={Home} />
           <Route path="/topic/new" component={TopicCreator} />
