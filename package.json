@@ -28,7 +28,7 @@
     "babel-runtime": "^7.0.0-beta.3",
     "classnames": "^2.2.5",
     "dom4": "^1.8.5",
-    "draft-js": "^0.10.3",
+    "draft-js": "^0.10.4",
     "draft-js-plugins-editor": "^2.0.0-rc8",
     "express": "^4.16.2",
     "lodash": "^4.17.4",
@@ -47,7 +47,7 @@
     "react-transition-group": "^2.2.1",
     "recompose": "^0.25.1",
     "redraft": "^0.8.0",
-    "styled-components": "^2.2.2"
+    "styled-components": "^2.2.3"
   },
   "devDependencies": {
     "babel-core": "^7.0.0-beta.3",
@@ -68,7 +68,7 @@
     "case-sensitive-paths-webpack-plugin": "^2.1.1",
     "codecov": "^2.3.1",
     "css-loader": "^0.28.7",
-    "eslint": "^4.9.0",
+    "eslint": "^4.10.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-prettier": "^2.3.1",
     "eslint-plugin-react": "^7.4.0",
