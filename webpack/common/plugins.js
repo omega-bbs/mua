@@ -2,7 +2,7 @@
 
 const webpack = require("webpack");
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
-const BabelMinifyPlugin = require("babel-minify-webpack-plugin");
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 const StatsPlugin = require("stats-webpack-plugin");
 
 const production = process.env.NODE_ENV === "production";
@@ -25,7 +25,10 @@ module.exports = (side, { stats = true } = {}) =>
 
     production && new webpack.optimize.ModuleConcatenationPlugin(),
 
-    production && new BabelMinifyPlugin(),
+    production &&
+      new UglifyJSPlugin({
+        sourceMap: true,
+      }),
 
     stats && new StatsPlugin("stats.json"),
   ].filter(Boolean);
