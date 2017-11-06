@@ -11,7 +11,6 @@ module.exports = {
     ["@babel/plugin-transform-runtime", { polyfill: false, useBuiltIns: true }],
 
     // plugins for libraries
-    // "babel-plugin-lodash",
     ["babel-plugin-styled-components", { ssr: true, displayName: !production }],
     production && "babel-plugin-graphql-tag",
 

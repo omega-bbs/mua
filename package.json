@@ -61,7 +61,6 @@
     "babel-jest": "^21.2.0",
     "babel-loader": "^8.0.0-beta.0",
     "babel-plugin-graphql-tag": "^1.3.0",
-    "babel-plugin-lodash": "github:omega-bbs/babel-plugin-lodash#compiled",
     "babel-plugin-styled-components": "^1.3.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.10",
     "case-sensitive-paths-webpack-plugin": "^2.1.1",
