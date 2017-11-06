@@ -14,7 +14,7 @@ module.exports = options => {
 
     entry: {
       app: [
-        "babel-polyfill",
+        "@babel/polyfill",
         "dom4",
         "pepjs",
         "react-hot-loader/patch",
