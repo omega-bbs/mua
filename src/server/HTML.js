@@ -1,4 +1,4 @@
-import _ from "lodash";
+import flatten from "lodash/flatten";
 import React from "react";
 import PropTypes from "prop-types";
 
@@ -14,7 +14,7 @@ class HTML extends React.Component {
     const { options, helmet, sheet, content } = this.props;
 
     const assets = options.clientStats.assetsByChunkName;
-    const scripts = _.flatten([assets.vendor, assets.app])
+    const scripts = flatten([assets.vendor, assets.app])
       .filter(file => file && file.endsWith(".js"))
       .map(file => options.clientStats.publicPath + file);
 

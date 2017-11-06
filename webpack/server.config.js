@@ -11,7 +11,7 @@ module.exports = options => {
     context: path.resolve("."),
 
     entry: {
-      app: ["babel-polyfill", "./entry/server"],
+      app: ["@babel/polyfill", "./entry/server"],
     },
 
     output: {
